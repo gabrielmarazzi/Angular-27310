@@ -1,0 +1,34 @@
+/* Area del toolbar */
+
+.grid-toolbar{
+    grid-area:toolbar;
+}
+
+/*area del navbar*/
+
+.grid-navbar{
+    grid-area:navbar;
+    width: 100%;
+}
+
+/*area del contenido*/
+.grid-students{
+    grid-area:students;
+}
+
+/*area del footer*/
+.grid-footer{
+    grid-area:footer;
+    
+}
+
+/*grid general*/
+.grid-container{
+    display: grid;
+    grid-template-areas:
+    "toolbar    toolbar     toolbar     toolbar     toolbar     toolbar"
+    "navbar     students    students    students    students    students"
+    "footer     footer      footer      footer      footer      footer";
+
+   
+}
