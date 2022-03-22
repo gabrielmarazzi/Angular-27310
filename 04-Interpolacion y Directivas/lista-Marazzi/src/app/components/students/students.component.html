@@ -3,6 +3,7 @@
 <p>Se utilizo ngFor, ngClass, ngIf, y ngx-bootstrap para los acordiones </p>
 <p>Se crearon 2 directivas personalizadas, pero solo a fines de prueba</p>
 <p>Cantidad de estudiantes {{ estudiantes.length}}</p>
+
 <div *ngFor="let estudiante of estudiantes">
     <accordion [isAnimated]="true">
         <accordion-group heading="{{estudiante.personApellidos}}, {{estudiante.personNombres}}">
