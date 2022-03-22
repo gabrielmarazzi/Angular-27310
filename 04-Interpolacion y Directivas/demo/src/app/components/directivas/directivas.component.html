@@ -1,0 +1,43 @@
+<h1>Ejempos de directivas</h1>
+
+<h2>Directiva ngClass</h2>
+
+<h3 [ngClass]="valor < 5 ? 'texto-error' : 'texto-exito'">Valor de la variable: {{ valor }}</h3>
+
+<h2>Directiva ngStyle</h2>
+<h3 [style.border]="valor < 5 ? '3px solid black' : '3px solid green'">Valor de la variable: {{ valor }}</h3>
+
+<h2>Directiva Personalizada</h2>
+<h3 fondoGris>Valor de la variable: {{ valor }}</h3>
+
+<button (mouseenter)="mouseEnter()"></button>
+<button (click)="restar()">Decrementar </button>
+<button (click)="sumar()">Incrementar </button>
+
+<h2>Directiva estructurada</h2>
+<ol>
+    <li *ngFor="let docente of docentes">{{ docente }}</li>
+</ol>
+<h3>Con json</h3>
+<ol>
+    <li *ngFor="let j of json">{{ j.nombre }}</li>
+</ol>
+
+
+<h2>Directiva condicional</h2>
+<p>Muestra o oculta segun la condición</p>
+<h3 *ngIf="valor > 5">Valor de la variable: {{ valor }}</h3>
+
+<h2>Directiva condicional ngSwitch</h2>
+<div [ngSwitch]="valor">
+    <p *ngSwitchCase="5">caso 1 de la variable: {{ valor }}</p>
+    <p *ngSwitchCase="6">caso 2 de la variable: {{ valor }}</p>
+    <p *ngSwitchCase="7">caso 3 de la variable: {{ valor }}</p>
+    <div *ngSwitchDefault>defecto variable: {{ valor }}</div>
+</div>
+
+<h2>One Way binding</h2>
+<img #imagen [src]="urlImagen" alt="deportista">
+
+<h2>Two way binding:</h2>
+<input type="number" [(ngModel)]="valor" placeholder="Nombre">
