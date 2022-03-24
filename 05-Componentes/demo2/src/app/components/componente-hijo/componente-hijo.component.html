@@ -1,0 +1,8 @@
+<div class="card">
+    <p>{{mensaje}}</p>
+    <ul *ngIf="listaProfesores.length > 0">
+        <li *ngFor="let profesor of listaProfesores">
+            Mi nombre es {{profesor.nombre}} y soy {{profesor.rol}}
+        </li>
+    </ul>
+</div>
