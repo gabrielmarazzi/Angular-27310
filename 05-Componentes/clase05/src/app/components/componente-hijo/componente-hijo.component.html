@@ -1,0 +1,11 @@
+<div class="card">
+    <p>Estoy desde el component hijo</p>
+    <ul>
+        <li *ngFor="let estudiante of listaEstudiantesHijo">
+            {{estudiante}}
+        </li>
+    </ul>
+    <button class="btn btn-primary" (click)="enviarDatos()">
+        Enviar al componente padre
+    </button>
+</div>

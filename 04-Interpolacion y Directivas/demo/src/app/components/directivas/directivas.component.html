@@ -2,7 +2,7 @@
 
 <h2>Directiva ngClass</h2>
 
-<h3 [ngClass]="valor < 5 ? 'texto-error' : 'texto-exito'">Valor de la variable: {{ valor }}</h3>
+<h3 class="alert" [ngClass]="valor < 5 ? 'alert-primary' : 'alert-secondary'">Valor de la variable: {{ valor }}</h3>
 
 <h2>Directiva ngStyle</h2>
 <h3 [style.border]="valor < 5 ? '3px solid black' : '3px solid green'">Valor de la variable: {{ valor }}</h3>

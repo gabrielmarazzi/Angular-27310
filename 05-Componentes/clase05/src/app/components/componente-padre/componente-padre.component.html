@@ -1,0 +1,8 @@
+<div class="card-header">
+    <p>Este es el padre</p>
+    <p>{{textoRecibido}}</p>
+    <app-componente-hijo [listaEstudiantesHijo]="listaEstudiantesPadre" (eventoSalida)="obtenerTextoSalida($event)">
+    </app-componente-hijo>
+
+
+</div>
