@@ -1,0 +1,104 @@
+<div class="container">
+    <h4>Formulario reactivo alta de estudiantes</h4>
+    <p>Dentro de components/students, cree un nuevo componente students-form</p>
+    <form class="row g-3" [formGroup]="formularioEstudiante" (ngSubmit)="cargaEstudiante()" novalidate>
+        <div class="col-md-6 g3">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" formControlName="nombre"
+                [ngClass]="formularioEstudiante.get('nombre')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('nombre')?.errors?.['minlength'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('nombre')?.errors?.['required']" class="invalid-feedback">El campo
+                nombre es requerido</div>
+
+            <div *ngIf="formularioEstudiante.get('nombre')?.errors?.['minlength']" class="invalid-feedback">Debe tener
+                como minimo 5 caracteres</div>
+        </div>
+        <div class="col-md-6">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="form-control" formControlName="apellido"
+                [ngClass]="formularioEstudiante.get('apellido')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('apellido')?.errors?.['minlength'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('apellido')?.errors?.['required']" class="invalid-feedback">El campo
+                apellido es requerido</div>
+
+            <div *ngIf="formularioEstudiante.get('apellido')?.errors?.['minlength']" class="invalid-feedback">Debe tener
+                como minimo 5 caracteres</div>
+        </div>
+
+
+        <div class="col-md-6">
+            <label class="form-label">Edad</label>
+            <input type="text" class="form-control" formControlName="edad"
+                [ngClass]="formularioEstudiante.get('edad')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('edad')?.errors?.['pattern'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('edad')?.errors?.['required']" class="invalid-feedback">El campo edad
+                es
+                requerido</div>
+            <div *ngIf="formularioEstudiante.get('edad')?.errors?.['pattern']" class="invalid-feedback">El campo edad
+                debe ser
+                numerico</div>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Legajo</label>
+            <input type="text" class="form-control" formControlName="legajo"
+                [ngClass]="formularioEstudiante.get('legajo')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('legajo')?.errors?.['pattern'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('legajo')?.errors?.['required']" class="invalid-feedback">El campo
+                legajo
+                es
+                requerido</div>
+            <div *ngIf="formularioEstudiante.get('edad')?.errors?.['pattern']" class="invalid-feedback">El campo legajo
+                debe ser
+                numerico</div>
+        </div>
+
+
+
+        <div class="col-md-12">
+            <label class="form-label">E-mail</label>
+            <input type="text" class="form-control" formControlName="email"
+                [ngClass]="formularioEstudiante.get('email')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('email')?.errors?.['email'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('email')?.errors?.['required']" class="invalid-feedback">El campo
+                email
+                es
+                requerido</div>
+            <div *ngIf="formularioEstudiante.get('edad')?.errors?.['pattern']" class="invalid-feedback">El campo email
+                tiene un valor incorrecto</div>
+        </div>
+
+        <div class="col-md-12">
+            <button class="btn btn-primary" type="submit" [disabled]="formularioEstudiante.invalid">Agregar
+                Estudiante</button>
+        </div>
+
+    </form>
+    <br>
+
+    <h3>Listado Estudiantes</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>Legajo</th>
+                <th>Email</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let estudiante of listadoEstudiantes">
+                <td>{{estudiante.personNombres}}</td>
+                <td>{{estudiante.personApellidos}}</td>
+                <td>{{estudiante.edad}}</td>
+                <td>{{estudiante.legajo}}</td>
+                <td>{{estudiante.correo}}</td>
+                <td>
+                    <button class="btn btn-danger" (click)="borrarEstudiante(estudiante)">Borrar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
