@@ -1,0 +1,27 @@
+<form [formGroup]="formulario" (ngSubmig)="agregar()">
+    <mat-card>
+        <mat-card-title>Formulario</mat-card-title>
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <input type="text" matInput formControlName="nombre">
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Fecha</mat-label>
+                <input type="date" matInput formControlName="fecha">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Nombre</mat-label>
+                <mat-select fromControlName="comidaFavortia">
+                    <mat-option value="sushi">Sushi</mat-option>
+                    <mat-option value="milanesa">Milanesa</mat-option>
+                    <mat-option value="pollo">Pollo</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <button type="submit" mat-raised-button color="primary" [disabled]="formulario.invalid">Agregar</button>
+        </mat-card-actions>
+    </mat-card>
+</form>

@@ -1,0 +1,8 @@
+.tarjeta{
+    width: 250px;
+}
+
+.imagen-titulo-tarjeta{
+    background-image: url(https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png);
+    background-size: cover;
+}
