@@ -1,0 +1,33 @@
+/* Area del superior */
+
+.grid-menu-superior {
+    grid-area: superior;
+}
+
+/*area del navbar*/
+
+.grid-menu-lateral {
+    grid-area: lateral;
+    width: 50%;
+}
+
+/*area del contenido*/
+.grid-contenido {
+    grid-area: contenido;
+}
+
+/*area del footer*/
+.grid-footer {
+    grid-area: footer;
+
+}
+
+/*grid general*/
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        "superior    superior     superior     superior     superior     superior"
+        "lateral     contenido    contenido    contenido    contenido    contenido";
+
+
+}

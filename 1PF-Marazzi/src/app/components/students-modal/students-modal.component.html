@@ -1,0 +1,207 @@
+<div *ngIf="data.opcion=='agregar'">
+    <h2 [appEstiloPersonal]="'#E8FF3C'">Nuevo Estudiante</h2>
+    <form class="row g-3" [formGroup]="formularioEstudiante" (ngSubmit)="agregarEstudiante()" novalidate>
+        <div class="col-md-6 g3">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" formControlName="nombre"
+                [ngClass]="formularioEstudiante.get('nombre')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('nombre')?.errors?.['minlength'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('nombre')?.errors?.['required']" class="invalid-feedback">El campo
+                nombre es requerido</div>
+
+            <div *ngIf="formularioEstudiante.get('nombre')?.errors?.['minlength']" class="invalid-feedback">Debe tener
+                como minimo 5 caracteres</div>
+        </div>
+        <div class="col-md-6">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="form-control" formControlName="apellido"
+                [ngClass]="formularioEstudiante.get('apellido')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('apellido')?.errors?.['minlength'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('apellido')?.errors?.['required']" class="invalid-feedback">El campo
+                apellido es requerido</div>
+
+            <div *ngIf="formularioEstudiante.get('apellido')?.errors?.['minlength']" class="invalid-feedback">Debe tener
+                como minimo 5 caracteres</div>
+        </div>
+
+
+        <div class="col-md-6">
+            <label class="form-label">Edad</label>
+            <input type="text" class="form-control" formControlName="edad"
+                [ngClass]="formularioEstudiante.get('edad')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('edad')?.errors?.['pattern'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('edad')?.errors?.['required']" class="invalid-feedback">El campo edad
+                es
+                requerido</div>
+            <div *ngIf="formularioEstudiante.get('edad')?.errors?.['pattern']" class="invalid-feedback">El campo edad
+                debe ser
+                numerico</div>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Legajo</label>
+            <input type="text" class="form-control" formControlName="legajo"
+                [ngClass]="formularioEstudiante.get('legajo')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('legajo')?.errors?.['pattern'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('legajo')?.errors?.['required']" class="invalid-feedback">El campo
+                legajo
+                es
+                requerido</div>
+            <div *ngIf="formularioEstudiante.get('edad')?.errors?.['pattern']" class="invalid-feedback">El campo legajo
+                debe ser
+                numerico</div>
+        </div>
+
+
+
+        <div class="col-md-12">
+            <label class="form-label">E-mail</label>
+            <input type="text" class="form-control" formControlName="email"
+                [ngClass]="formularioEstudiante.get('email')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('email')?.errors?.['email'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('email')?.errors?.['required']" class="invalid-feedback">El campo
+                email
+                es
+                requerido</div>
+            <div *ngIf="formularioEstudiante.get('edad')?.errors?.['pattern']" class="invalid-feedback">El campo email
+                tiene un valor incorrecto</div>
+        </div>
+
+        <div class="col-md-6">
+            <button class="btn btn-primary" type="submit" [disabled]="formularioEstudiante.invalid">Agregar
+                Estudiante</button>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-danger" type="button" (click)="cerrarModal()">Cancelar</button>
+        </div>
+
+    </form>
+</div>
+<div *ngIf="data.opcion=='editar'" class="col-md-12">
+    <h2 [appEstiloPersonal]="'#E8FF3C'">Editar información de {{data.estudiante | formatoNombre}}</h2>
+
+    <form class="row g-3" [formGroup]="formularioEstudiante" (ngSubmit)="editarEstudiante()" novalidate>
+        <div class="col-md-6 g3">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" formControlName="nombre"
+                [ngClass]="formularioEstudiante.get('nombre')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('nombre')?.errors?.['minlength'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('nombre')?.errors?.['required']" class="invalid-feedback">El campo
+                nombre es requerido</div>
+
+            <div *ngIf="formularioEstudiante.get('nombre')?.errors?.['minlength']" class="invalid-feedback">Debe tener
+                como minimo 5 caracteres</div>
+        </div>
+        <div class="col-md-6">
+            <label for="apellido">Apellido</label>
+            <input type="text" class="form-control" formControlName="apellido" [value]="data.estudiante.personApellidos"
+                [ngClass]="formularioEstudiante.get('apellido')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('apellido')?.errors?.['minlength'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('apellido')?.errors?.['required']" class="invalid-feedback">El campo
+                apellido es requerido</div>
+
+            <div *ngIf="formularioEstudiante.get('apellido')?.errors?.['minlength']" class="invalid-feedback">Debe tener
+                como minimo 5 caracteres</div>
+        </div>
+
+
+        <div class="col-md-6">
+            <label class="form-label">Edad</label>
+            <input type="text" class="form-control" formControlName="edad" [value]="data.estudiante.edad"
+                [ngClass]="formularioEstudiante.get('edad')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('edad')?.errors?.['pattern'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('edad')?.errors?.['required']" class="invalid-feedback">El campo edad
+                es
+                requerido</div>
+            <div *ngIf="formularioEstudiante.get('edad')?.errors?.['pattern']" class="invalid-feedback">El campo edad
+                debe ser
+                numerico</div>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Legajo</label>
+            <input type="text" class="form-control" formControlName="legajo" [value]="data.estudiante.legajo"
+                [ngClass]="formularioEstudiante.get('legajo')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('legajo')?.errors?.['pattern'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('legajo')?.errors?.['required']" class="invalid-feedback">El campo
+                legajo
+                es
+                requerido</div>
+            <div *ngIf="formularioEstudiante.get('edad')?.errors?.['pattern']" class="invalid-feedback">El campo legajo
+                debe ser
+                numerico</div>
+        </div>
+
+
+
+        <div class="col-md-12">
+            <label class="form-label">E-mail</label>
+            <input type="text" class="form-control" formControlName="email" [value]="data.estudiante.correo"
+                [ngClass]="formularioEstudiante.get('email')?.errors?.['required'] ? 'is-invalid':'is-valid'"
+                [ngClass]="formularioEstudiante.get('email')?.errors?.['email'] ? 'is-invalid':'is-valid'">
+            <div *ngIf="formularioEstudiante.get('email')?.errors?.['required']" class="invalid-feedback">El campo
+                email
+                es
+                requerido</div>
+            <div *ngIf="formularioEstudiante.get('edad')?.errors?.['pattern']" class="invalid-feedback">El campo email
+                tiene un valor incorrecto</div>
+        </div>
+
+        <div class="col-md-6">
+            <button class="btn btn-primary" type="submit" [disabled]="formularioEstudiante.invalid">Actualizar
+                Estudiante</button>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-danger" type="button" (click)="cerrarModal()">Cancelar</button>
+        </div>
+
+    </form>
+</div>
+<div *ngIf="data.opcion=='eliminar'">
+    <h2 [appEstiloPersonal]="'#E8FF3C'">Confirmación de eliminación de {{data.estudiante | formatoNombre}}</h2>
+    <mat-dialog-content>
+        Una vez eliminada la información no podrá recuperarse (salvo que refresque la página)
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <div class="col-md-6">
+            <button class="btn btn-danger" type="button" (click)="eliminarEstudiante()">Eliminar</button>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-primary" type="button" (click)="cerrarModal()">Cancelar</button>
+        </div>
+
+
+    </mat-dialog-actions>
+
+</div>
+<div *ngIf="data.opcion=='ver'">
+    <h2 [appEstiloPersonal]="'#E8FF3C'">Información de {{data.estudiante | formatoNombre}}</h2>
+    <mat-dialog-content>
+        <p>Legajo: {{data.estudiante.legajo}}</p>
+        <p>Apellido y Nombres: {{data.estudiante | formatoNombre}}</p>
+        <p>Correo: {{data.estudiante.correo}}</p>
+        <p>Promedio: {{data.estudiante.promedio}}</p>
+
+        <p>Cursos:</p>
+        <ul>
+            <li *ngFor="let curso of data.estudiante.cursos">
+                {{curso.courseNombre}} <br>
+                Inicia {{curso.fechaInicio | date:'dd/MM/yyyy'}} y termina {{curso.fechaFin |
+                date:'dd/MM/yyyy'}}<br>
+                Nota {{curso.nota}}<br>
+                Profesor {{curso.profesor}}<br>
+                Ayudantes:
+                <ul>
+                    <li *ngFor="let ayudante of curso.ayudantes">
+                        {{ayudante}}
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Cerrar</button>
+    </mat-dialog-actions>
+
+</div>
