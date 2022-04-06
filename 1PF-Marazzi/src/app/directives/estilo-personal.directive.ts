@@ -16,6 +16,7 @@ export class EstiloPersonalDirective implements OnInit {
       this.elemento.nativeElement.style.fontSize = '40px';
     } else {
       this.elemento.nativeElement.style.backgroundColor = this.colorResaltado;
+      this.elemento.nativeElement.style.fontSize = '20px';
     }
   }
 }
