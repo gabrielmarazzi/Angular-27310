@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { menuList } from './listadoMenu';
+import { MenuItems } from 'src/app/classes/menu-items';
+
 
 @Component({
   selector: 'app-menu-lateral',
@@ -8,18 +9,16 @@ import { menuList } from './listadoMenu';
 })
 export class MenuLateralComponent implements OnInit {
 
-  sideMenu = menuList;
-  collapse = false;
+
+  menuItems: MenuItems[] = [];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.collapse = true;
+    this.menuItems = MenuItems.getMenuByRole(1);
   }
 
-  toggleSidebar() {
-    this.collapse = !this.collapse;
-  }
+
 
 
 
