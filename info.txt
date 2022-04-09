@@ -1,2 +1,16 @@
 Repo Profe
 https://github.com/AbnerGarcia96/Angular-27310
+
+
+El repositorio esta compuesto por carpetas por cada clase.
+La carpeta 1PF-Marazzi contiene la entrega a realizar
+
+https://github.com/gabrielmarazzi/Angular-27310/tree/main/1PF-Marazzi
+
+Cree una directiva personalizada para que cambie el color de fondo para todos los elementos, se le pasa por parametros. y el tamaño de texto a 20 px.
+Y para los h1 cambia el tipo de fuente y utiliza un tamaño de 40 px.
+
+Utilice el pipe personalizado unicamente para el nombre.
+
+
+Saludos cordiales

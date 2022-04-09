@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Courses } from 'src/app/classes/courses';
+import { FakeData } from 'src/app/classes/fake-data';
+import { Grades } from 'src/app/classes/grades';
 import { MenuItems } from 'src/app/classes/menu-items';
+import { Persons } from 'src/app/classes/persons';
+import { Students } from 'src/app/classes/students';
 
 
 @Component({
@@ -12,10 +17,13 @@ export class MenuLateralComponent implements OnInit {
 
   menuItems: MenuItems[] = [];
 
+  student: Students = new FakeData().initializeFakeStudentData();
+
+
   constructor() { }
 
   ngOnInit(): void {
-    this.menuItems = MenuItems.getMenuByRole(1);
+    this.menuItems = MenuItems.getMenuByRole(this.student.person.role.id);
   }
 
 

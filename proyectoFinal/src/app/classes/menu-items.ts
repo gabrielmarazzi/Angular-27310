@@ -14,7 +14,7 @@ export class MenuItems {
             case 1: //admin
                 return [
                     new MenuItems(1, 'Inicio', 'home', '/', true),
-                    new MenuItems(2, 'Usuarios', 'people', '/users', true),
+                    // new MenuItems(2, 'Usuarios', 'people', '/users', true),
                     new MenuItems(4, 'Cursos', 'book', '/courses', true),
                     new MenuItems(5, 'Estudiantes', 'people', '/students', true),
                     new MenuItems(6, 'Profesores', 'people', '/professors', true),

@@ -5,6 +5,7 @@ export class Roles {
         public active: boolean = false
     ) { }
 
+
     public static getRoles(): Roles[] {
         return [
             new Roles(1, 'Admin'),
@@ -13,6 +14,19 @@ export class Roles {
             new Roles(4, 'Estudiante'),
 
         ];
+    }
+
+    public static getStudentRole(): Roles {
+        return new Roles(4, 'Estudiante');
+    }
+
+    public static getAdminRole(): Roles {
+        return new Roles(1, 'Admin');
+    }
+
+    public static getRandomRole(): Roles {
+        let roles = Roles.getRoles();
+        return roles[Math.floor(Math.random() * roles.length)];
     }
 
 

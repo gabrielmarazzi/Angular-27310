@@ -13,6 +13,7 @@ import { TeachersComponent } from './components/teachers/teachers.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { AboutComponent } from './components/about/about.component';
 import { HelpComponent } from './components/help/help.component';
+import { formatoNombreStudentPipe } from './pipes/formato-nombre.pipe';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HelpComponent } from './components/help/help.component';
     CoursesComponent,
     AboutComponent,
     HelpComponent,
+    formatoNombreStudentPipe,
   ],
   imports: [
     BrowserModule,

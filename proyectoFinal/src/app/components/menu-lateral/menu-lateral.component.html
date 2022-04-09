@@ -8,10 +8,10 @@
 
 <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav">
-        <img class="avatar mat-elevation-z8" src="https://source.unsplash.com/c_GmwfHBDzk/200x200" />
+        <img class="avatar mat-elevation-z8" src={{student.person.image}} />
 
-        <h4 class="name">Gabriel Marazzi</h4>
-        <p class="designation">Estudiante</p>
+        <h4 class="name">{{student | formatoNombreStudent:'nombre'}}</h4>
+        <p class="designation">{{student | formatoNombreStudent:'role'}}</p>
 
         <mat-divider></mat-divider>
 
