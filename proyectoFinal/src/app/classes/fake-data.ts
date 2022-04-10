@@ -63,6 +63,18 @@ export class FakeData {
         );
     }
 
+    createCourseWithParams(id: number, name: string, description: string, difficulty: string, startDate: Date, endDate: Date, image: string, enabled: boolean): Courses {
+        return new Courses(
+            id,
+            name,
+            description,
+            difficulty,
+            startDate,
+            endDate,
+            image,
+            enabled
+        );
+    }
     addCourseToStudent(student: Students, course: Courses): Students {
         student.courses.push(course);
         return student;
@@ -111,13 +123,19 @@ export class FakeData {
     initializeFakeCoursesData(): Courses[] {
 
         return [
-            this.createCourse(),
-            this.createCourse(),
-            this.createCourse(),
-            this.createCourse(),
+            this.createCourseWithParams(1, "Course 1", "Description 1", "Difficulty 1", new Date(), new Date(), "./assets/img/avatars/1.jpg", true),
+            this.createCourseWithParams(2, "Course 2", "Description 2", "Difficulty 2", new Date(), new Date(), "./assets/img/avatars/2.jpg", true),
+            this.createCourseWithParams(3, "Course 3", "Description 3", "Difficulty 3", new Date(), new Date(), "./assets/img/avatars/3.jpg", true),
+            this.createCourseWithParams(4, "Course 4", "Description 4", "Difficulty 4", new Date(), new Date(), "./assets/img/avatars/4.jpg", true),
+            this.createCourseWithParams(5, "Course 5", "Description 5", "Difficulty 5", new Date(), new Date(), "./assets/img/avatars/5.jpg", true),
+            this.createCourseWithParams(6, "Course 6", "Description 6", "Difficulty 6", new Date(), new Date(), "./assets/img/avatars/6.jpg", true),
+            this.createCourseWithParams(7, "Course 7", "Description 7", "Difficulty 7", new Date(), new Date(), "./assets/img/avatars/7.jpg", true),
+            this.createCourseWithParams(8, "Course 8", "Description 8", "Difficulty 8", new Date(), new Date(), "./assets/img/avatars/8.jpg", true),
+
         ]
 
     }
+
 
 
 }

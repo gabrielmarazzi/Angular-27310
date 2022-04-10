@@ -14,6 +14,10 @@ import { CoursesComponent } from './components/courses/courses.component';
 import { AboutComponent } from './components/about/about.component';
 import { HelpComponent } from './components/help/help.component';
 import { formatoNombreStudentPipe } from './pipes/formato-nombre.pipe';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CoursesDetailComponent } from './components/courses-detail/courses-detail.component';
+import { CourseService } from './services/course.service';
+
 
 @NgModule({
   declarations: [
@@ -27,14 +31,19 @@ import { formatoNombreStudentPipe } from './pipes/formato-nombre.pipe';
     AboutComponent,
     HelpComponent,
     formatoNombreStudentPipe,
+    CoursesDetailComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FlexLayoutModule
   ],
-  providers: [],
+  providers: [
+    CourseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

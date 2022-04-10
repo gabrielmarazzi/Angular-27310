@@ -1,6 +1,5 @@
+import { CourseService } from 'src/app/services/course.service';
 import { Component, OnInit } from '@angular/core';
-import { Courses } from 'src/app/classes/courses';
-import { FakeData } from 'src/app/classes/fake-data';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +8,15 @@ import { FakeData } from 'src/app/classes/fake-data';
 })
 export class HomeComponent implements OnInit {
 
+  Cursos: any[] = [];
 
-  Cursos: Courses[] = new FakeData().initializeFakeCoursesData();
 
-
-  constructor() { }
+  constructor(private cursoService: CourseService) { }
 
   ngOnInit(): void {
+    this.cursoService.obtenerObservableCurso().subscribe((suscripcion) => {
+      this.Cursos = suscripcion;
+    });
   }
 
 }

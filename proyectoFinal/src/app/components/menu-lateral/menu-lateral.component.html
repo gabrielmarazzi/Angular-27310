@@ -1,5 +1,5 @@
 <mat-toolbar class="mat-elevation-z8">
-    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+    <button mat-icon-button *ngIf="sidenav.mode === 'side'" (click)="sidenav.toggle()">
         <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>
         <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
     </button>
@@ -7,7 +7,8 @@
 </mat-toolbar>
 
 <mat-sidenav-container>
-    <mat-sidenav #sidenav="matSidenav">
+
+    <mat-sidenav #sidenav="matSidenav" mode="side" opened="true">
         <img class="avatar mat-elevation-z8" src={{student.person.image}} />
 
         <h4 class="name">{{student | formatoNombreStudent:'nombre'}}</h4>
@@ -16,7 +17,7 @@
         <mat-divider></mat-divider>
 
         <div *ngFor="let item of menuItems">
-            <button mat-button class="menu-button" (click)="sidenav.close()" [routerLink]="item.route">
+            <button mat-button class="menu-button" [routerLink]="item.route">
                 <mat-icon>{{ item.icon }}</mat-icon>
                 <span> {{ item.title }}</span>
 
@@ -26,7 +27,9 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <div class="content mat-elevation-z8">
-            <router-outlet></router-outlet>
+            <router-outlet>
+
+            </router-outlet>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

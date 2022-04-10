@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Courses } from 'src/app/classes/courses';
+import { Observable } from 'rxjs';
 import { FakeData } from 'src/app/classes/fake-data';
-import { Grades } from 'src/app/classes/grades';
 import { MenuItems } from 'src/app/classes/menu-items';
-import { Persons } from 'src/app/classes/persons';
+
 import { Students } from 'src/app/classes/students';
 
 
@@ -24,6 +23,9 @@ export class MenuLateralComponent implements OnInit {
 
   ngOnInit(): void {
     this.menuItems = MenuItems.getMenuByRole(this.student.person.role.id);
+
+
+
   }
 
 
