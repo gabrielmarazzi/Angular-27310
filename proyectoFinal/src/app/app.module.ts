@@ -13,10 +13,15 @@ import { TeachersComponent } from './components/teachers/teachers.component';
 import { CoursesComponent } from './components/courses/courses.component';
 import { AboutComponent } from './components/about/about.component';
 import { HelpComponent } from './components/help/help.component';
-import { formatoNombreStudentPipe } from './pipes/formato-nombre.pipe';
+import { formatoDatosStudentPipe } from './pipes/formato-nombre.pipe';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CoursesDetailComponent } from './components/courses-detail/courses-detail.component';
 import { CourseService } from './services/course.service';
+import { StudentsModalComponent } from './components/students-modal/students-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StudentsDetailComponent } from './components/students-detail/students-detail.component';
+import { FormatoTitulosDirective } from './directives/formato-titulos.directive';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -30,16 +35,22 @@ import { CourseService } from './services/course.service';
     CoursesComponent,
     AboutComponent,
     HelpComponent,
-    formatoNombreStudentPipe,
+    formatoDatosStudentPipe,
     CoursesDetailComponent,
+    StudentsModalComponent,
+    StudentsDetailComponent,
+    FormatoTitulosDirective,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    HttpClientModule
   ],
   providers: [
     CourseService

@@ -5,6 +5,7 @@ import { CoursesDetailComponent } from './components/courses-detail/courses-deta
 import { CoursesComponent } from './components/courses/courses.component';
 import { HelpComponent } from './components/help/help.component';
 import { HomeComponent } from './components/home/home.component';
+import { StudentsDetailComponent } from './components/students-detail/students-detail.component';
 import { StudentsComponent } from './components/students/students.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
 
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'students',
     component: StudentsComponent
+  },
+  {
+    path: 'students/:id',
+    component: StudentsDetailComponent
   },
   {
     path: 'teachers',

@@ -13,6 +13,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatMenuModule } from '@angular/material/menu';
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+
 @NgModule({
     exports: [
         MatButtonModule,
@@ -27,7 +30,10 @@ import { MatMenuModule } from '@angular/material/menu';
         MatSidenavModule,
         MatToolbarModule,
         MatTooltipModule,
-        MatMenuModule
+        MatMenuModule,
+        MatDatepickerModule,
+        MatNativeDateModule
+
     ],
     declarations: [
     ]

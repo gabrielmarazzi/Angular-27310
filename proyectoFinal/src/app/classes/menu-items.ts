@@ -53,7 +53,7 @@ export class MenuItems {
                     new MenuItems(1, 'Inicio', 'home', '/', true),
                     new MenuItems(2, 'Usuarios', 'people', '/users', true),
                     new MenuItems(4, 'Cursos', 'book', '/courses', true),
-                    // new MenuItems(5, 'Estudiantes', 'people', '/students', true),
+                    new MenuItems(5, 'Estudiantes', 'people', '/students', true),
                     // new MenuItems(6, 'Profesores', 'people', '/professors', true),
                     // new MenuItems(7, 'Ayudantes', 'people', '/assistants', true),
                     new MenuItems(8, 'Mis Datos', 'info', '/profile', true),

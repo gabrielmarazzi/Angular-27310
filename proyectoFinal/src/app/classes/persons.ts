@@ -7,6 +7,7 @@ export class Persons {
         public lastName: string,
         public email: string,
         public password: string,
+        public birthDay: Date,
         public role: Roles,
         public image: string,
         public active: boolean = false

@@ -9,7 +9,6 @@ export class Students {
         public person: Persons,
         public courses: Array<Courses>,
         public grades: Array<Grades>,
-        public promedioGeneral: number,
 
     ) { }
 

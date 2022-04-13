@@ -9,10 +9,10 @@
 <mat-sidenav-container>
 
     <mat-sidenav #sidenav="matSidenav" mode="side" opened="true">
-        <img class="avatar mat-elevation-z8" src={{student.person.image}} />
+        <img class="avatar mat-elevation-z8" alt="imagen" src={{student.person.image}} />
 
-        <h4 class="name">{{student | formatoNombreStudent:'nombre'}}</h4>
-        <p class="designation">{{student | formatoNombreStudent:'role'}}</p>
+        <h4 class="name">{{student | formatoDatosStudent:'nombre'}}</h4>
+        <p class="designation">{{student | formatoDatosStudent:'role'}}</p>
 
         <mat-divider></mat-divider>
 
@@ -28,7 +28,6 @@
     <mat-sidenav-content>
         <div class="content mat-elevation-z8">
             <router-outlet>
-
             </router-outlet>
         </div>
     </mat-sidenav-content>

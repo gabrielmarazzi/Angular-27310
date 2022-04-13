@@ -1,9 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Roles } from '../classes/roles';
 
 @Pipe({
-  name: 'formatoNombreStudent'
+  name: 'formatoDatosStudent'
 })
-export class formatoNombreStudentPipe implements PipeTransform {
+export class formatoDatosStudentPipe implements PipeTransform {
 
   transform(value: any, tipo: string): unknown {
     let valor: string = value;
@@ -11,8 +12,33 @@ export class formatoNombreStudentPipe implements PipeTransform {
       valor = `${value.person.lastName}, ${value.person.name}`;
     }
     if (tipo == 'role') {
-      valor = `${value.person.role.name}`;
+      valor = Roles.getRoleName(value.person.role);
     }
+
+    if (tipo == 'edad') {
+      let fechaNacimiento = new Date(value.person.birthDay);
+      let edad = new Date().getFullYear() - fechaNacimiento.getFullYear();
+      valor = `${edad}`;
+    }
+
+    if (tipo == 'fechaNacimiento') {
+      let fechaNacimiento = new Date(value.person.birthDay);
+      valor = `${fechaNacimiento.getDate()}/${fechaNacimiento.getMonth()}/${fechaNacimiento.getFullYear()}`;
+    }
+
+
+    if (tipo == 'activo') {
+      if (value.person.active) {
+        valor = 'Activo';
+      } else {
+        valor = 'Inactivo';
+      }
+    }
+
+    if (tipo == 'correo') {
+      valor = `${value.person.email}`;
+    }
+
     return valor;
   }
 
