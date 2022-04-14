@@ -6,3 +6,11 @@ table {
     font-size: 14px;
     width: 100%;
 }
+
+.enabled {
+    background-color: #e0e0e0;
+}
+
+.disabled {
+    background-color: #f0f0f0;
+}

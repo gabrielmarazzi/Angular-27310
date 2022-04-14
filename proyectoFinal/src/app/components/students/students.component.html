@@ -12,30 +12,36 @@
     <table mat-table [dataSource]="dataSource" #table class="mat-elevation-z8" class="tabla ">
         <ng-container matColumnDef="legajo">
             <th mat-header-cell *matHeaderCellDef> Legajo </th>
-            <td mat-cell *matCellDef="let fila"> {{ fila.legajo }} </td>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{
+                fila.legajo }}
+            </td>
         </ng-container>
         <ng-container matColumnDef="nombre">
             <th mat-header-cell *matHeaderCellDef> Apellido y Nombres </th>
-            <td mat-cell *matCellDef="let fila"> {{ fila | formatoDatosStudent : 'nombre'}} </td>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
+                formatoDatosStudent : 'nombre'}} </td>
         </ng-container>
         <ng-container matColumnDef="edad">
             <th mat-header-cell *matHeaderCellDef> Edad </th>
-            <td mat-cell *matCellDef="let fila"> {{ fila | formatoDatosStudent : 'edad' }} </td>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
+                formatoDatosStudent : 'edad' }} </td>
         </ng-container>
 
         <ng-container matColumnDef="fechaNacimiento">
             <th mat-header-cell *matHeaderCellDef> Fecha de Nacimiento </th>
-            <td mat-cell *matCellDef="let fila"> {{ fila | formatoDatosStudent : 'fechaNacimiento' }} </td>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
+                formatoDatosStudent : 'fechaNacimiento' }} </td>
         </ng-container>
 
         <ng-container matColumnDef="habilitado">
             <th mat-header-cell *matHeaderCellDef> Edad </th>
-            <td mat-cell *matCellDef="let fila"> {{ fila | formatoDatosStudent : 'activo' }} </td>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
+                formatoDatosStudent : 'activo' }} </td>
         </ng-container>
 
         <ng-container matColumnDef="correo">
             <th mat-header-cell *matHeaderCellDef> Correo </th>
-            <td mat-cell *matCellDef="let fila">
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'">
                 <a href="mailto:{{fila | formatoDatosStudent : 'correo' }}">
                     <button mat-button>
                         <mat-icon>alternate_email</mat-icon>
@@ -45,15 +51,19 @@
         </ng-container>
         <ng-container matColumnDef="opciones">
             <th mat-header-cell *matHeaderCellDef> Opciones </th>
-            <td mat-cell *matCellDef="let fila">
-                <button mat-button routerLink="/students/{{fila.legajo}}">
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'">
+                <button mat-button routerLink="/students/{{fila.id}}">
                     <mat-icon>search</mat-icon>
                 </button>
                 <button mat-icon-button color="primary" (click)="editStudent(fila)">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button color="warn" (click)="deleteStudent(fila)">
+                <button mat-icon-button color="warn" (click)="deleteStudent(fila)" *ngIf="fila.person.active">
                     <mat-icon>delete</mat-icon>
+                </button>
+
+                <button mat-icon-button color="warn" (click)="enableStudent(fila)" *ngIf="!fila.person.active">
+                    <mat-icon>add</mat-icon>
                 </button>
 
             </td>

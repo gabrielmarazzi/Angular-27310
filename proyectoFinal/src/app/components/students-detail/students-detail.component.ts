@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { FakeData } from 'src/app/classes/fake-data';
 import { Students } from 'src/app/classes/students';
+import { PersonsService } from 'src/app/services/persons.service';
 
 @Component({
   selector: 'app-students-detail',
@@ -13,22 +14,31 @@ export class StudentsDetailComponent implements OnInit {
   legajo: number = 0;
   routeSubcription!: Subscription;
 
-  students: Students[] = new FakeData().initializeFakeStudentsWithCoursesAndGradesData();
-  student!: Students;
+  student: any;
+  student$!: Observable<any>
+  studentSuscripcion!: any;
+  serviceURL = "https://perfildigital.adea.com.ar/service/test/service.ashx";
+
   constructor(
     private activatedRoute: ActivatedRoute,
+    private PersonsService: PersonsService
   ) { }
 
   ngOnInit(): void {
     this.routeSubcription = this.activatedRoute.params.subscribe(
       (params) => {
         this.legajo = params['id'];
-        let student = this.students.find((estudiante) => estudiante.id == this.legajo);
-        if (student != undefined) {
-          this.student = student;
-        }
+
+        this.student$ = this.PersonsService.obtenerDatosEstudiantesObservableById(this.legajo);
+        this.studentSuscripcion = this.student$
+          .subscribe((datos) => {
+            this.student = datos[0];
+          });
+
+
 
       });
+
 
 
   }

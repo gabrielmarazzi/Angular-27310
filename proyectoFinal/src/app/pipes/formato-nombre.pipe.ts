@@ -23,7 +23,7 @@ export class formatoDatosStudentPipe implements PipeTransform {
 
     if (tipo == 'fechaNacimiento') {
       let fechaNacimiento = new Date(value.person.birthDay);
-      valor = `${fechaNacimiento.getDate()}/${fechaNacimiento.getMonth()}/${fechaNacimiento.getFullYear()}`;
+      valor = `${fechaNacimiento.getDate()}/${fechaNacimiento.getMonth() + 1}/${fechaNacimiento.getFullYear()}`;
     }
 
 

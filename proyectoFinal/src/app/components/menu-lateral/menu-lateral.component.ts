@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
-import { FakeData } from 'src/app/classes/fake-data';
 import { MenuItems } from 'src/app/classes/menu-items';
-import { Roles } from 'src/app/classes/roles';
 
-import { Students } from 'src/app/classes/students';
-import { StudentsService } from 'src/app/services/students.service';
+import { PersonsService } from 'src/app/services/persons.service';
 
 
 @Component({
@@ -27,7 +24,7 @@ export class MenuLateralComponent implements OnInit {
 
 
   constructor(
-    private studentService: StudentsService,
+    private studentService: PersonsService,
     private SpinnerService: NgxSpinnerService
   ) {
 

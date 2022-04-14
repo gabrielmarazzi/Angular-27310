@@ -25,6 +25,7 @@ export class CourseService {
     let params = new HttpParams();
     params = params.append('method', 'getCourses');
 
+    params = params.append('IdCourse', " ");
     let Respuesta = this.http.get(this.serviceURL, { params: params });
 
 
@@ -32,9 +33,22 @@ export class CourseService {
 
   }
 
+  obtenerDatosCursoObservableById(id: number): Observable<any> {
+
+    let params = new HttpParams();
+    params = params.append('method', 'getCourses');
+    params = params.append('IdCourse', id.toString());
+    let Respuesta = this.http.get(this.serviceURL, { params: params });
+
+
+    return Respuesta;
+
+  }
+
+
   actualizarDatosCursosObservable(data: any): Observable<any> {
     //call asmx to get courses
-    console.log(data);
+    // console.log(data);
     let params = new HttpParams();
     params = params.append('method', 'ABMCourse');
     params = params.append('IdCurso', data.id);

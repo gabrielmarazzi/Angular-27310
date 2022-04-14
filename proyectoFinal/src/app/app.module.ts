@@ -1,3 +1,4 @@
+import { PersonsService } from './services/persons.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -58,7 +59,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     NgxSpinnerModule
   ],
   providers: [
-    CourseService
+    CourseService,
+    PersonsService
   ],
   bootstrap: [AppComponent]
 })
