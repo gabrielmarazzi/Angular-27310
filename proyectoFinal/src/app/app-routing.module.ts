@@ -5,6 +5,7 @@ import { CoursesDetailComponent } from './components/courses-detail/courses-deta
 import { CoursesComponent } from './components/courses/courses.component';
 import { HelpComponent } from './components/help/help.component';
 import { HomeComponent } from './components/home/home.component';
+import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
 import { StudentsDetailComponent } from './components/students-detail/students-detail.component';
 import { StudentsComponent } from './components/students/students.component';
 import { TeachersComponent } from './components/teachers/teachers.component';
@@ -45,6 +46,11 @@ const routes: Routes = [
   {
     path: 'help',
     component: HelpComponent
+  },
+  //por cualuqier otra página	
+  {
+    path: '**',
+    component: PaginaNoEncontradaComponent
   }
 ];
 

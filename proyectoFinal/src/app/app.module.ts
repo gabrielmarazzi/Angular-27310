@@ -22,6 +22,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StudentsDetailComponent } from './components/students-detail/students-detail.component';
 import { FormatoTitulosDirective } from './directives/formato-titulos.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -40,6 +42,7 @@ import { HttpClientModule } from '@angular/common/http';
     StudentsModalComponent,
     StudentsDetailComponent,
     FormatoTitulosDirective,
+    PaginaNoEncontradaComponent
 
   ],
   imports: [
@@ -50,7 +53,9 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+
+    NgxSpinnerModule
   ],
   providers: [
     CourseService

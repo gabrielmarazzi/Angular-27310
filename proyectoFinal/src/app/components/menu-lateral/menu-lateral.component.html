@@ -1,3 +1,8 @@
+<ngx-spinner bdColor="rgb(255, 255, 255)" size="medium" color="rgb(0,0,0)" type="ball-scale-ripple-multiple">
+    <p *ngIf="student == null" style="color: rgb(7, 7, 7)">Cargando información... </p>
+    <p *ngIf="student != null" style="color: rgb(7, 7, 7)">{{student | formatoDatosStudent:'nombre'}}</p>
+</ngx-spinner>
+
 <mat-toolbar class="mat-elevation-z8">
     <button mat-icon-button *ngIf="sidenav.mode === 'side'" (click)="sidenav.toggle()">
         <mat-icon *ngIf="!sidenav.opened"> menu </mat-icon>

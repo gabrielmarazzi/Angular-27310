@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
 import { FakeData } from 'src/app/classes/fake-data';
 import { MenuItems } from 'src/app/classes/menu-items';
@@ -26,7 +27,8 @@ export class MenuLateralComponent implements OnInit {
 
 
   constructor(
-    private studentService: StudentsService
+    private studentService: StudentsService,
+    private SpinnerService: NgxSpinnerService
   ) {
 
   }
@@ -34,6 +36,7 @@ export class MenuLateralComponent implements OnInit {
 
   ngOnInit(): void {
     //this.menuItems = MenuItems.getMenuByRole(this.student.person.role.id);
+    this.SpinnerService.show();
 
     this.students$ = this.studentService.obtenerDatosEstudiantesObservableById(5)
 
@@ -46,6 +49,9 @@ export class MenuLateralComponent implements OnInit {
         let roleId: number = this.student.person.role;
 
         this.menuItems = MenuItems.getMenuByRole(roleId);
+        if (this.student != null) {
+          this.SpinnerService.hide();
+        }
       });
   }
 
