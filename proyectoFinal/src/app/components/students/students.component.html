@@ -9,7 +9,7 @@
 </div>
 <br>
 <div class="">
-    <table mat-table [dataSource]="dataSource" #table class="mat-elevation-z8" class="tabla ">
+    <table mat-table [dataSource]="students$" #table class="mat-elevation-z8" class="tabla ">
         <ng-container matColumnDef="legajo">
             <th mat-header-cell *matHeaderCellDef> Legajo </th>
             <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{
@@ -34,7 +34,7 @@
         </ng-container>
 
         <ng-container matColumnDef="habilitado">
-            <th mat-header-cell *matHeaderCellDef> Edad </th>
+            <th mat-header-cell *matHeaderCellDef> Habilitado </th>
             <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
                 formatoDatosStudent : 'activo' }} </td>
         </ng-container>
