@@ -50,7 +50,7 @@
         <input matInput type="email" placeholder="Correo electrónico" formControlName="correo" required
             [(ngModel)]="student.person.email">
         <mat-error *ngIf="formularioEstudiante.get('correo')?.hasError('required')">
-            <strong>El correo es requerido</strong>
+            <strong>El legajo es requerido</strong>
         </mat-error>
     </mat-form-field>
     <div class="col-md-6">
