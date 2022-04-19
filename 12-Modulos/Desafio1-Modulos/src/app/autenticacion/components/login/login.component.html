@@ -1,0 +1,9 @@
+<p>login works!</p>
+
+<form [formGroup]="formulario" (ngSubmit)="login()">
+    <label>Correo:</label>
+    <input text=" text" formControlName="correo"><br>
+    <label>Contraseña:</label>
+    <input type="password" formControlName="contrasena"><br>
+    <button type="submit" [disabled]="formulario.invalid">Ingresar</button>
+</form>
