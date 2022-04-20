@@ -1,0 +1,74 @@
+<h2>{{title}}</h2>
+<form class="row g-3" [formGroup]="formularioCurso" (ngSubmit)="guardarCambios()" novalidate>
+
+
+    <mat-form-field class="col-md-6">
+        <input matInput placeholder="Camada" formControlName="camada" required [(ngModel)]="course.camada">
+        <mat-error *ngIf="formularioCurso.get('camada')?.hasError('required')">
+            <strong>El número/identificación de camada es requerido</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+        <input matInput placeholder="Nombre" formControlName="nombre" required [(ngModel)]="course.name">
+        <mat-error *ngIf="formularioCurso.get('nombre')?.hasError('required')">
+            <strong>El nombre es requerido</strong>
+        </mat-error>
+
+        <mat-error *ngIf="formularioCurso.get('nombre')?.hasError('minLength')">
+            <strong>Debe ingresar mas de 3 caracteres</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+        <input matInput placeholder="Descripción" formControlName="descripcion" required
+            [(ngModel)]="course.description">
+        <mat-error *ngIf="formularioCurso.get('descripcion')?.hasError('required')">
+            <strong>La descripción es requerida</strong>
+        </mat-error>
+
+        <mat-error *ngIf="formularioCurso.get('descripcion')?.hasError('minLength')">
+            <strong>Debe ingresar mas de 3 caracteres</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+        <input matInput placeholder="Dificultad" formControlName="dificultad" required [(ngModel)]="course.difficulty">
+        <mat-error *ngIf="formularioCurso.get('dificultad')?.hasError('required')">
+            <strong>La dificultad es requerida</strong>
+        </mat-error>
+
+        <mat-error *ngIf="formularioCurso.get('dificultad')?.hasError('minLength')">
+            <strong>Debe ingresar mas de 3 caracteres</strong>
+        </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="col-md-6">
+        <input matInput [matDatepicker]="pickerDateFI" placeholder="Fecha de Inicio" formControlName="fechaInicio"
+            required [(ngModel)]="course.startDate">
+        <mat-datepicker-toggle matSuffix [for]="pickerDateFI"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDateFI></mat-datepicker>
+        <mat-error *ngIf="formularioCurso.get('fechaInicio')?.hasError('required')">
+            <strong>La fecha de Inicio es requerida</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+        <input matInput [matDatepicker]="pickerDateFF" placeholder="Fecha de Finalización" formControlName="fechaFin"
+            required [(ngModel)]="course.endDate">
+        <mat-datepicker-toggle matSuffix [for]="pickerDateFF"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDateFF></mat-datepicker>
+        <mat-error *ngIf="formularioCurso.get('fechaFin')?.hasError('required')">
+            <strong>La fecha de Inicio es requerida</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <div class="col-md-6">
+        <button class="btn btn-primary" type="submit" [disabled]="formularioCurso.invalid">Guardar</button>
+    </div>
+    <div class="col-md-6">
+        <button class="btn btn-danger" type="button" align="end" (click)="cerrarModal()">Cancelar</button>
+    </div>
+
+</form>

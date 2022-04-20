@@ -1,0 +1,140 @@
+<ngx-spinner bdColor="rgb(255, 255, 255)" size="medium" color="rgb(0,0,0)" type="ball-scale-ripple-multiple">
+    <p style="color: #000000; font-size: 20px;">
+        <span class="fa fa-spin fa-spinner"></span> Cargando...
+    </p>
+</ngx-spinner>
+<h1 *ngIf="courseId == ''" appFormatoTitulos>Listado Estudiantes a inscribir </h1>
+<h1 *ngIf="courseId != ''" appFormatoTitulos>Listado Estudiantes inscriptos al curso {{Curso.camada}} - {{Curso.name}}
+</h1>
+
+<table mat-table [dataSource]="studentsInscriptos" #tableInscriptos class="mat-elevation-z8" class="tabla ">
+    <ng-container matColumnDef="legajo">
+        <th mat-header-cell *matHeaderCellDef> Legajo </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{
+            fila.legajo }}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Apellido y Nombres </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
+            formatoDatosStudent : 'nombre'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="edad">
+        <th mat-header-cell *matHeaderCellDef> Edad </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
+            formatoDatosStudent : 'edad' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaNacimiento">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Nacimiento </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
+            formatoDatosStudent : 'fechaNacimiento' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="habilitado">
+        <th mat-header-cell *matHeaderCellDef> Habilitado </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
+            formatoDatosStudent : 'activo' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef> Correo </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'">
+            <a href="mailto:{{fila | formatoDatosStudent : 'correo' }}">
+                <button mat-button>
+                    <mat-icon>alternate_email</mat-icon>
+                </button>
+            </a>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'">
+            <button mat-button routerLink="/students/{{fila.id}}">
+                <mat-icon>search</mat-icon>
+            </button>
+
+
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="insc">
+        <th mat-header-cell *matHeaderCellDef> Desinscribir </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'">
+            <button mat-icon-button color="primary" (click)="ABMCurso(fila,'B')">
+                <mat-icon>assignment_returned</mat-icon>
+            </button>
+
+
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+</table>
+<div *ngIf="studentsInscriptos.length == 0">No hay información de estudiantes</div>
+<br>
+<h1 *ngIf="courseId != ''" appFormatoTitulos>Listado Estudiantes no inscriptos al curso {{Curso.camada}} -
+    {{Curso.name}}
+</h1>
+
+<table mat-table [dataSource]="studentsNoInscriptos" #tableNoInscriptos class="mat-elevation-z8" class="tabla ">
+    <ng-container matColumnDef="legajo">
+        <th mat-header-cell *matHeaderCellDef> Legajo </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{
+            fila.legajo }}
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Apellido y Nombres </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
+            formatoDatosStudent : 'nombre'}} </td>
+    </ng-container>
+    <ng-container matColumnDef="edad">
+        <th mat-header-cell *matHeaderCellDef> Edad </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
+            formatoDatosStudent : 'edad' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaNacimiento">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Nacimiento </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
+            formatoDatosStudent : 'fechaNacimiento' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="habilitado">
+        <th mat-header-cell *matHeaderCellDef> Habilitado </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'"> {{ fila |
+            formatoDatosStudent : 'activo' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="correo">
+        <th mat-header-cell *matHeaderCellDef> Correo </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'">
+            <a href="mailto:{{fila | formatoDatosStudent : 'correo' }}">
+                <button mat-button>
+                    <mat-icon>alternate_email</mat-icon>
+                </button>
+            </a>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'">
+            <button mat-button routerLink="/students/{{fila.id}}">
+                <mat-icon>search</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+    <ng-container matColumnDef="insc">
+        <th mat-header-cell *matHeaderCellDef> Inscribir </th>
+        <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'">
+            <button mat-icon-button color="primary" (click)="ABMCurso(fila,'A')">
+                <mat-icon>assignment_turned_in</mat-icon>
+            </button>
+
+
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+</table>
+<div *ngIf="studentsNoInscriptos.length == 0">No hay información de estudiantes</div>

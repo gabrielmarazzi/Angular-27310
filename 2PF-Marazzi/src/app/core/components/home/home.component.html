@@ -1,0 +1,35 @@
+<div class="container" fxLayout="row wrap">
+
+    <div class="row col-md-12">
+        <div class="col-md-9">
+            <!-- <h1>Listado de Cursos CoderMarazzi</h1> -->
+        </div>
+        <!-- <div class="col-md-3">
+            <button #filtro class="btn btn-primary" (click)="filterCourses()">{{textoBoton}}</button>
+        </div> -->
+    </div>
+    <mat-card class="card" fxFlex.lt-md="100%" *ngFor="let Curso of Cursos$ |  async ">
+        <mat-card-header>
+            <mat-card-title>
+                <h4 appFormatoTitulos>{{Curso.name}}</h4>
+            </mat-card-title>
+            <mat-card-subtitle>{{Curso.difficulty}}</mat-card-subtitle>
+        </mat-card-header>
+        <img *ngIf="Curso.image != ''" mat-card-image src="{{Curso.image}}" alt="{{Curso.name}}" width="100px">
+        <mat-card-content>
+            <h6 appFormatoTitulos>
+                Camada: {{Curso.camada}} - {{Curso.description}}
+            </h6>
+        </mat-card-content>
+        <mat-card-actions align="end">
+            <!-- <button mat-raised-button color="primary" (click)="actualizarCursoTest(Curso)">Cambiar imagen</button> -->
+            <button mat-raised-button color="accent" *ngIf="!inscripto" routerLink="/inscriptions/{{Curso.id}}"
+                fxFlex.lt-md="100%">Administración</button>
+            <button mat-raised-button color="accent" *ngIf="inscripto" routerLink="/courses/{{Curso.id}}"
+                fxFlex.lt-md="100%">
+                Ingresar</button>
+        </mat-card-actions>
+    </mat-card>
+
+
+</div>
