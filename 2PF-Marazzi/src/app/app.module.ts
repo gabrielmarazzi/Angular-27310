@@ -1,4 +1,4 @@
-import { CursosModule } from './pantallas/cursos/cursos.module';
+import { CursosModule } from './featured/cursos/cursos.module';
 
 import { PersonsService } from './services/persons.service';
 import { NgModule } from '@angular/core';
@@ -19,8 +19,8 @@ import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/p
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { EstudiantesModule } from './pantallas/estudiantes/estudiantes.module';
-import { InscripcionesModule } from './pantallas/inscripciones/inscripciones.module';
+import { EstudiantesModule } from './featured/estudiantes/estudiantes.module';
+import { InscripcionesModule } from './featured/inscripciones/inscripciones.module';
 
 
 @NgModule({
