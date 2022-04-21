@@ -69,12 +69,12 @@
 
             </mat-form-field>
             <mat-form-field class="col-md-6">
-                <input matInput [matDatepicker]="pickerDateFI" placeholder="Fecha de Inicio" formControlName="fecha"
-                    required [(ngModel)]="datosNotas.fecha">
+                <input matInput [matDatepicker]="pickerDateFI" placeholder="Fecha" formControlName="fecha" required
+                    [(ngModel)]="datosNotas.fecha">
                 <mat-datepicker-toggle matSuffix [for]="pickerDateFI"></mat-datepicker-toggle>
                 <mat-datepicker #pickerDateFI></mat-datepicker>
                 <mat-error *ngIf="formularioGrades.get('Fecha')?.hasError('required')">
-                    <strong>La fecha de Inicio es requerida</strong>
+                    <strong>La fecha es requerida</strong>
                 </mat-error>
             </mat-form-field>
 
