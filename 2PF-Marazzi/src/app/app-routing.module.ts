@@ -19,32 +19,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent
   },
-  {
-    path: 'students',
-    loadChildren: () => import('./featured/estudiantes/estudiantes.module').then(m => m.EstudiantesModule)
-  },
-  {
-    path: 'students/:id',
-    component: StudentsDetailComponent
-  },
-  {
-    path: 'courses',
-    loadChildren: () => import('./featured/cursos/cursos.module').then(m => m.CursosModule)
-  },
-  {
-    path: 'courses/:id',
-    component: CoursesDetailComponent,
 
-
-  },
-  {
-    path: 'inscriptions',
-    loadChildren: () => import('./featured/inscripciones/inscripciones.module').then(m => m.InscripcionesModule)
-  },
-  {
-    path: 'inscriptions/:id',
-    component: InscriptionsComponent
-  },
   {
     path: '**',
     component: PaginaNoEncontradaComponent

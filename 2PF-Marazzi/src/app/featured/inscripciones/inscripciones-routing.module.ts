@@ -4,9 +4,6 @@ import { InscriptionsComponent } from './components/inscriptions/inscriptions.co
 
 const routes: Routes = [
   {
-    path: '', component: InscriptionsComponent
-  },
-  {
     path: 'inscriptions',
     component: InscriptionsComponent
   },

@@ -1,3 +1,4 @@
+import { EstudiantesRoutingModule } from './featured/estudiantes/estudiantes-routing.module';
 import { CursosModule } from './featured/cursos/cursos.module';
 
 import { PersonsService } from './services/persons.service';
@@ -21,6 +22,8 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { EstudiantesModule } from './featured/estudiantes/estudiantes.module';
 import { InscripcionesModule } from './featured/inscripciones/inscripciones.module';
+import { CursosRoutingModule } from './featured/cursos/cursos-routing.module';
+import { InscripcionesRoutingModule } from './featured/inscripciones/inscripciones-routing.module';
 
 
 @NgModule({
@@ -34,6 +37,9 @@ import { InscripcionesModule } from './featured/inscripciones/inscripciones.modu
   ],
   imports: [
     BrowserModule,
+    EstudiantesRoutingModule,
+    CursosRoutingModule,
+    InscripcionesRoutingModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
