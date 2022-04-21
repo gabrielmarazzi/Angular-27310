@@ -2,7 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Grades } from 'src/app/classes/grades';
-import { GradesService } from '../../services/grades.service';
+import { GradesService } from 'src/app/pantallas/services/grades.service';
+
 
 @Component({
   selector: 'app-students-grades',

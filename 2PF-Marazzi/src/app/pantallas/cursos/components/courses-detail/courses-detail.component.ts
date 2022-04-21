@@ -1,10 +1,11 @@
-import { StudentsGradesComponent } from './../students-grades/students-grades.component';
+
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { CourseService } from 'src/app/services/course.service';
 import { MatDialog } from '@angular/material/dialog';
+import { StudentsGradesComponent } from 'src/app/pantallas/estudiantes/components/students-grades/students-grades.component';
 
 @Component({
   selector: 'app-courses-detail',

@@ -4,7 +4,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Observable, Subscription } from 'rxjs';
 import { CourseService } from 'src/app/services/course.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-Inscriptions',
@@ -33,7 +33,8 @@ export class InscriptionsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private cursoService: CourseService,
     private SpinnerService: NgxSpinnerService,
-    private PersonsService: PersonsService
+    private PersonsService: PersonsService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -43,11 +44,16 @@ export class InscriptionsComponent implements OnInit {
   }
 
   inicializarDatos() {
+
     this.routeSubcription = this.activatedRoute.params.subscribe(
       (params) => {
         this.courseId = params['id'];
-        if (this.courseId != "") {
+        console.log("Parametro", this.courseId);
+        if (this.courseId != undefined) {
           this.obtenerCurso(parseInt(this.courseId));
+        } else {
+          this.router.navigate(['/courses']);
+
         }
       });
     this.obtenerEstudiantes();
@@ -100,8 +106,12 @@ export class InscriptionsComponent implements OnInit {
 
   ngOnDestroy() {
     this.routeSubcription.unsubscribe();
-    this.studentsSuscripcion.unsubscribe();
-    this.CursoSuscripcion.unsubscribe();
+    if (this.studentsSuscripcion != undefined) {
+      this.studentsSuscripcion.unsubscribe();
+    }
+    if (this.CursoSuscripcion != undefined) {
+      this.CursoSuscripcion.unsubscribe();
+    }
   }
 
 }

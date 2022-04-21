@@ -1,13 +1,13 @@
-import { StudentsGradesComponent } from './featured/components/students-grades/students-grades.component';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
 import { HomeComponent } from './core/components/home/home.component';
-import { CoursesDetailComponent } from './featured/components/courses-detail/courses-detail.component';
-import { CoursesComponent } from './featured/components/courses/courses.component';
-import { InscriptionsComponent } from './featured/components/inscriptions/inscriptions.component';
-import { StudentsDetailComponent } from './featured/components/students-detail/students-detail.component';
-import { StudentsComponent } from './featured/components/students/students.component';
+import { CoursesDetailComponent } from './pantallas/cursos/components/courses-detail/courses-detail.component';
+
+import { StudentsDetailComponent } from './pantallas/estudiantes/components/students-detail/students-detail.component';
+import { InscriptionsComponent } from './pantallas/inscripciones/components/inscriptions/inscriptions.component';
+
 
 
 const routes: Routes = [
@@ -21,43 +21,30 @@ const routes: Routes = [
   },
   {
     path: 'students',
-    component: StudentsComponent
+    loadChildren: () => import('./pantallas/estudiantes/estudiantes.module').then(m => m.EstudiantesModule)
   },
   {
     path: 'students/:id',
     component: StudentsDetailComponent
   },
-
-  // {
-  //   path: 'teachers',
-  //   component: TeachersComponent
-  // },
   {
     path: 'courses',
-    component: CoursesComponent
+    loadChildren: () => import('./pantallas/cursos/cursos.module').then(m => m.CursosModule)
   },
   {
     path: 'courses/:id',
-    component: CoursesDetailComponent
+    component: CoursesDetailComponent,
+
+
   },
   {
     path: 'inscriptions',
-    component: InscriptionsComponent
+    loadChildren: () => import('./pantallas/inscripciones/inscripciones.module').then(m => m.InscripcionesModule)
   },
   {
     path: 'inscriptions/:id',
     component: InscriptionsComponent
   },
-  // {
-  //   path: 'about',
-  //   component: AboutComponent
-  // },
-  // {
-  //   path: 'help',
-  //   component: HelpComponent
-  // }
-
-  //por cualuqier otra página	
   {
     path: '**',
     component: PaginaNoEncontradaComponent
