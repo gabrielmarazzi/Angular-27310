@@ -31,10 +31,11 @@ const routes: Routes = [
             },
             {
                 path: 'logoff',
-                component: LogoffComponent
+                component: LogoffComponent,
 
             }
         ]
+
     }
 
 ];
