@@ -4,10 +4,10 @@
     </p>
 </ngx-spinner>
 
-<h1>Listado de Cursos</h1>
+<h1 *ngIf="!administraInscripcion">Listado de Cursos</h1>
+<h1 *ngIf="administraInscripcion">Administración de inscripciones a Cursos</h1>
 
-
-<div class="button-container">
+<div class="button-container" *ngIf="!administraInscripcion">
     <button mat-raised-button color="accent" (click)="addCourse()">
         <mat-icon>add</mat-icon>Agregar Curso
     </button>
@@ -59,7 +59,7 @@
                 {{ fila | formatoNombreCursos: 'activo'}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="opciones">
+        <ng-container matColumnDef="opciones" *ngIf="!administraInscripcion">
             <th mat-header-cell *matHeaderCellDef> Opciones </th>
             <td mat-cell *matCellDef="let fila" [ngClass]="fila.active ? 'enable' : 'disabled'">
                 <button mat-button routerLink="/courses/{{fila.id}}">
@@ -75,6 +75,15 @@
                 <button mat-icon-button color="warn" (click)="enableDisableCourse(fila,true)" *ngIf="!fila.active">
                     <mat-icon>add</mat-icon>
                 </button>
+
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="opciones" *ngIf="administraInscripcion">
+            <th mat-header-cell *matHeaderCellDef> Opciones </th>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.active ? 'enable' : 'disabled'">
+                <button mat-raised-button color="primary" [disabled]="!fila.active"
+                    routerLink="/inscriptions/{{fila.id}}">Administrar
+                    incripciones</button>
 
             </td>
         </ng-container>

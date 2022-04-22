@@ -1,7 +1,8 @@
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { CourseService } from 'src/app/services/course.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 
@@ -23,14 +24,28 @@ export class CoursesComponent implements OnInit {
   CursosSuscripcion!: any;
   serviceURL = "https://perfildigital.adea.com.ar/service/test/service.ashx";
   columnas: string[] = ['camada', 'nombre', 'descripcion', 'fechaInicio', 'fechaFin', 'dificultad', 'habilitado', 'opciones']
+  routeSubcription!: Subscription;
+  administraInscripcion: boolean = false;
   constructor(
     private cursoService: CourseService,
     private SpinnerService: NgxSpinnerService,
     private dialogoRef: MatDialog,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+    this.activatedRoute.url.forEach((urlSegment) => {
+      console.log(urlSegment);
+      urlSegment.forEach(datoSegmento => {
+        if (datoSegmento.path == 'inscriptions') {
+          this.administraInscripcion = true;
+        }
+      })
+    })
     this.obtenerCursos();
+
+
   }
 
   obtenerCursos() {

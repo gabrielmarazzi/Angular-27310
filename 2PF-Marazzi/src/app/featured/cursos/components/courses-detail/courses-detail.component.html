@@ -17,7 +17,8 @@
         <p mat-line>Activo: {{Curso | formatoNombreCursos : 'activo'}}</p>
     </mat-list-item>
     <br>
-    <button mat-raised-button color="primary" routerLink="/inscriptions/{{Curso.id}}">Administrar incripciones</button>
+    <button mat-raised-button color="primary" routerLink="/inscriptions/{{Curso.id}}"
+        [disabled]="!Curso.active">Administrar incripciones</button>
     <br>
     <br>
     <mat-divider></mat-divider>

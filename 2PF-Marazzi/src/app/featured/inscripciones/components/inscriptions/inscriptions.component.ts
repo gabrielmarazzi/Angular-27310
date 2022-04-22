@@ -44,15 +44,15 @@ export class InscriptionsComponent implements OnInit {
   }
 
   inicializarDatos() {
-
+    console.log(this.activatedRoute.url);
     this.routeSubcription = this.activatedRoute.params.subscribe(
       (params) => {
         this.courseId = params['id'];
-        console.log("Parametro", this.courseId);
-        if (this.courseId != undefined) {
+
+        if ((this.courseId != undefined)) {
           this.obtenerCurso(parseInt(this.courseId));
         } else {
-          this.router.navigate(['/courses']);
+          this.router.navigate(['/inscriptions/courses']);
 
         }
       });

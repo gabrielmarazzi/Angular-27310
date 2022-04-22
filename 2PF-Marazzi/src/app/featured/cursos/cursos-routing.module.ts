@@ -10,6 +10,10 @@ const routes: Routes = [
     component: CoursesComponent
   },
   {
+    path: 'inscriptions/courses',
+    component: CoursesComponent
+  },
+  {
     path: 'courses/:id',
     component: CoursesDetailComponent
   }
