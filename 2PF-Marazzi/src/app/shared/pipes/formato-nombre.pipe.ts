@@ -37,6 +37,7 @@ export class formatoDatosStudentPipe implements PipeTransform {
     }
 
     if (tipo == 'correo') {
+
       valor = `${value.person.email}`;
       //console.log(value);
     }

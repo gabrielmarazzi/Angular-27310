@@ -69,7 +69,7 @@ export class PersonsService {
     params = params.append('Image', data.image);
     params = params.append('Active', data.active == true ? "1" : "0");
     params = params.append('Id', data.idStudent);
-    //console.log(params)
+    console.log(params)
     let httpHeaders = new HttpHeaders();
     httpHeaders = httpHeaders.append('Content-Type', 'application/json');
 

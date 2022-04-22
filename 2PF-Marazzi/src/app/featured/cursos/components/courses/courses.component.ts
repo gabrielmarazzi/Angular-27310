@@ -4,8 +4,10 @@ import { MatTable } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { CourseService } from 'src/app/services/course.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { MatDialog } from '@angular/material/dialog';
+
 import { CoursesModalComponent } from '../courses-modal/courses-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AppMaterialModule } from 'src/app/core/app.material.module';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
