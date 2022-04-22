@@ -8,6 +8,8 @@ import { MenuSuperiorComponent } from './components/menu-superior/menu-superior.
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
+import { AppCoreRoutingModule } from './app-routing.module';
+import { LogoffComponent } from './components/logoff/logoff.component';
 
 
 
@@ -17,6 +19,7 @@ import { LoginComponent } from './components/login/login.component';
     MenuLateralComponent,
     MenuSuperiorComponent,
     LoginComponent,
+    LogoffComponent
   ],
   imports: [
     CommonModule,
@@ -28,10 +31,11 @@ import { LoginComponent } from './components/login/login.component';
   ],
   exports: [
     AppMaterialModule,
-    AppRoutingModule,
+    AppCoreRoutingModule,
     MenuLateralComponent,
     MenuSuperiorComponent,
-    LoginComponent
+    LoginComponent,
+    LogoffComponent
   ]
 
 })

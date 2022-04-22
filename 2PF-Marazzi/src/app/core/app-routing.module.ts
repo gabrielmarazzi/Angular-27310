@@ -5,6 +5,8 @@ import { HomeComponent } from "./components/home/home.component";
 import { CoursesComponent } from '../featured/cursos/components/courses/courses.component';
 import { CoursesDetailComponent } from '../featured/cursos/components/courses-detail/courses-detail.component';
 
+import { LogoffComponent } from './components/logoff/logoff.component';
+
 
 
 const routes: Routes = [
@@ -26,6 +28,11 @@ const routes: Routes = [
             {
                 path: 'courses/:id',
                 component: CoursesDetailComponent
+            },
+            {
+                path: 'logoff',
+                component: LogoffComponent
+
             }
         ]
     }
