@@ -77,7 +77,8 @@ export class InscriptionsComponent implements OnInit {
         this.students = datos;
         // console.log(this.students)
         this.studentsInscriptos = this.students.filter(x => x.courses.find((y: { id: any; }) => y.id == this.courseId));
-        this.studentsNoInscriptos = this.students.filter(x => x.courses.find((y: { id: any; }) => y.id != this.courseId) || x.courses.length == 0);
+        this.studentsNoInscriptos = this.students.filter(x => !this.studentsInscriptos.includes(x));
+
         this.SpinnerService.hide()
       });
 
@@ -90,7 +91,7 @@ export class InscriptionsComponent implements OnInit {
 
   ABMCurso(fila: any, pTipo: string) {
     let id = fila.id;
-    // console.log(fila);
+    console.log(fila);
     if (id != "") {
       this.cursoService.ABMPersonToCurso(id, this.courseId, pTipo).subscribe((datos) => {
         this.inicializarDatos();

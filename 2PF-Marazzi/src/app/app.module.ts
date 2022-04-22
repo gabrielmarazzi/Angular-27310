@@ -24,6 +24,7 @@ import { EstudiantesModule } from './featured/estudiantes/estudiantes.module';
 import { InscripcionesModule } from './featured/inscripciones/inscripciones.module';
 import { CursosRoutingModule } from './featured/cursos/cursos-routing.module';
 import { InscripcionesRoutingModule } from './featured/inscripciones/inscripciones-routing.module';
+import { AppCoreRoutingModule } from './core/app-routing.module';
 
 
 @NgModule({
@@ -37,9 +38,11 @@ import { InscripcionesRoutingModule } from './featured/inscripciones/inscripcion
   ],
   imports: [
     BrowserModule,
+    AppCoreRoutingModule,
     EstudiantesRoutingModule,
     CursosRoutingModule,
     InscripcionesRoutingModule,
+
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,

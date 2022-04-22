@@ -1,17 +1,18 @@
+import { LoginComponent } from './core/components/login/login.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
-import { HomeComponent } from './core/components/home/home.component';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: LoginComponent
   },
   {
-    path: 'home',
-    component: HomeComponent
+    path: 'login',
+    component: LoginComponent
   },
 
   {

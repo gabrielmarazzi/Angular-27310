@@ -1,3 +1,4 @@
+import { MenuLateralComponent } from 'src/app/core/components/menu-lateral/menu-lateral.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -6,10 +7,17 @@ import { StudentsComponent } from './components/students/students.component';
 
 const routes: Routes = [
   {
-    path: 'students', component: StudentsComponent
-  },
-  {
-    path: 'students/:id', component: StudentsDetailComponent
+    path: '',
+    component: MenuLateralComponent,
+    children: [
+
+      {
+        path: 'students', component: StudentsComponent
+      },
+      {
+        path: 'students/:id', component: StudentsDetailComponent
+      }
+    ]
   }
 ];
 

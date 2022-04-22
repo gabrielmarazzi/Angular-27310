@@ -1,18 +1,35 @@
+import { MenuLateralComponent } from './components/menu-lateral/menu-lateral.component';
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { HomeComponent } from "./components/home/home.component";
+import { CoursesComponent } from '../featured/cursos/components/courses/courses.component';
+import { CoursesDetailComponent } from '../featured/cursos/components/courses-detail/courses-detail.component';
 
 
 
 const routes: Routes = [
     {
-        path: '',
-        component: HomeComponent
-    },
-    {
         path: 'home',
-        component: HomeComponent
+        component: MenuLateralComponent,
+        children: [
+            {
+                path: '', component: HomeComponent
+            },
+            {
+                path: 'courses',
+                component: CoursesComponent
+            },
+            {
+                path: 'inscriptions/courses',
+                component: CoursesComponent
+            },
+            {
+                path: 'courses/:id',
+                component: CoursesDetailComponent
+            }
+        ]
     }
+
 ];
 
 @NgModule({
@@ -23,4 +40,4 @@ const routes: Routes = [
         RouterModule
     ]
 })
-export class AppRoutingModule { }
+export class AppCoreRoutingModule { }

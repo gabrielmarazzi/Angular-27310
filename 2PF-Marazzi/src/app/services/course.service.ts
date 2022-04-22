@@ -126,7 +126,7 @@ export class CourseService {
     params = params.append('ABM', pTipo);
     let httpHeaders = new HttpHeaders();
     httpHeaders = httpHeaders.append('Content-Type', 'application/json');
-
+    console.log(this.serviceURL + "?" + params.toString());
     let Respuesta = this.http.get(this.serviceURL, { params: params });
 
     return Respuesta;

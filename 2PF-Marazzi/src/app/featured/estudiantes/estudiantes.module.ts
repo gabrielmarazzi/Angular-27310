@@ -1,4 +1,3 @@
-import { AppRoutingModule } from './../../core/app-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

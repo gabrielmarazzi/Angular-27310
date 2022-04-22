@@ -7,6 +7,7 @@ import { MenuLateralComponent } from './components/menu-lateral/menu-lateral.com
 import { MenuSuperiorComponent } from './components/menu-superior/menu-superior.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SharedModule } from '../shared/shared.module';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -15,6 +16,7 @@ import { SharedModule } from '../shared/shared.module';
     HomeComponent,
     MenuLateralComponent,
     MenuSuperiorComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,
@@ -29,6 +31,7 @@ import { SharedModule } from '../shared/shared.module';
     AppRoutingModule,
     MenuLateralComponent,
     MenuSuperiorComponent,
+    LoginComponent
   ]
 
 })
