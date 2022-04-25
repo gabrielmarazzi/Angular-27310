@@ -37,18 +37,19 @@ export class PersonsService {
     //call asmx to get courses
 
     let params = new HttpParams();
-    params = params.append('method', 'getStudents');
+    params = params.append('method', 'getPersons');
 
     let Respuesta = this.http.get(this.serviceURL, { params: params });
     return Respuesta;
   }
 
-  obtenerDatosEstudiantesObservableById(id: number): Observable<any> {
+  obtenerDatosPersonasObservableId(id: number, pIdRole: number): Observable<any> {
     //call asmx to get courses
 
     let params = new HttpParams();
-    params = params.append('method', 'getStudents');
+    params = params.append('method', 'getPersons');
     params = params.append('IdStudent', id.toString());
+    params = params.append('Role', pIdRole.toString());
 
     let Respuesta = this.http.get(this.serviceURL, { params: params });
 

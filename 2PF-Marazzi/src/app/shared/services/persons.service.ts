@@ -43,7 +43,7 @@ export class PersonsService {
     return Respuesta;
   }
 
-  obtenerDatosEstudiantesObservableById(id: number): Observable<any> {
+  obtenerDatosPersonasObservableId(id: number): Observable<any> {
     //call asmx to get courses
 
     let params = new HttpParams();

@@ -30,7 +30,7 @@ export class StudentsDetailComponent implements OnInit {
       (params) => {
         this.legajo = params['id'];
 
-        this.student$ = this.PersonsService.obtenerDatosEstudiantesObservableById(this.legajo);
+        this.student$ = this.PersonsService.obtenerDatosPersonasObservableId(this.legajo, 4);
         this.studentSuscripcion = this.student$
           .subscribe((datos) => {
             this.student = datos[0];

@@ -11,7 +11,7 @@ export class MenuItems {
 
     public static getMenuByRole(pIdRole: number): MenuItems[] {
         return [
-            new MenuItems(1, 'Inicio', 'home', '/', true),
+            new MenuItems(1, 'Inicio', 'home', '/home', true),
             new MenuItems(4, 'Cursos', 'book', '/courses', true),
             new MenuItems(5, 'Estudiantes', 'people', '/students', true),
             new MenuItems(6, 'Incripciones', 'people', '/inscriptions', true),

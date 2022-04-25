@@ -18,7 +18,7 @@ import { FormatoNombreCursosPipe } from './pipes/formato-nombre-cursos.pipe';
   exports: [
     formatoDatosStudentPipe,
     FormatoTitulosDirective,
-    FormatoNombreCursosPipe
+    FormatoNombreCursosPipe,
   ]
 })
 export class SharedModule { }

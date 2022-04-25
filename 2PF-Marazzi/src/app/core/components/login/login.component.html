@@ -1,1 +1,35 @@
-<button [routerLink]="'/home'">Login</button>
+<!-- <button [routerLink]="'/home'">Login</button> -->
+<app-barra-carga *ngIf="ingresando" [texto]="'Ingresando...'"></app-barra-carga>
+<div class="main-div">
+    <mat-card>
+        <mat-card-content>
+            <form class="row g-3" [formGroup]="formularioLogin" (ngSubmit)="doLogin()">
+                <h2>Ingreso a la aplicación</h2>
+                <mat-error *ngIf="!loginValid">
+                    Los datos de acceso no son validos
+                    <br>
+                    usuario: gabriel@marazzi.com
+                    clave: password
+                </mat-error>
+                <mat-form-field>
+                    <input matInput placeholder="Email" formControlName="username" required>
+                    <mat-error *ngIf="formularioLogin.get('username')?.hasError('email')">
+                        Por favor ingrese una dirección de correo electrónico valida
+                    </mat-error>
+                    <mat-error *ngIf="formularioLogin.get('username')?.hasError('required')">
+                        La dirección de correo es obligatoria
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput type="password" placeholder="Password" formControlName="password" required>
+                    <mat-error *ngIf="formularioLogin.get('password')?.hasError('required')">
+                        La contraseña de acceso es obligatoria
+                    </mat-error>
+                </mat-form-field>
+
+                <button mat-raised-button color="primary">Ingresar</button>
+
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>

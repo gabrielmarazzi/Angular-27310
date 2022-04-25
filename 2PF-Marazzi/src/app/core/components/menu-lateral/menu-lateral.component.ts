@@ -1,3 +1,5 @@
+import { AuthService } from './../../services/auth.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Observable } from 'rxjs';
@@ -25,7 +27,8 @@ export class MenuLateralComponent implements OnInit {
 
   constructor(
     private studentService: PersonsService,
-    private SpinnerService: NgxSpinnerService
+    private SpinnerService: NgxSpinnerService,
+    private route: Router,
   ) {
 
   }
@@ -35,18 +38,28 @@ export class MenuLateralComponent implements OnInit {
     //this.menuItems = MenuItems.getMenuByRole(this.student.person.role.id);
     this.SpinnerService.show();
 
-    this.students$ = this.studentService.obtenerDatosEstudiantesObservableById(5)
 
+    let id = parseInt(sessionStorage.getItem("id")!);
+    let roleId: number = parseInt(sessionStorage.getItem("role")!)
+    this.students$ = this.studentService.obtenerDatosPersonasObservableId(id, roleId)
+    console.log(id);
     this.studentsSuscripcion = this.students$
       .subscribe((datos) => {
-        this.student = datos[0];
+        //console.log(datos);
+        if (datos.length > 0) {
+          this.student = datos[0];
 
+          this.person = this.student.person;
+          let roleId: number = parseInt(sessionStorage.getItem("role")!)
 
-        this.person = this.student.person;
-        let roleId: number = this.student.person.role;
+          this.menuItems = MenuItems.getMenuByRole(roleId);
+          if (this.student != null) {
+            this.SpinnerService.hide();
+          }
+        } else {
 
-        this.menuItems = MenuItems.getMenuByRole(roleId);
-        if (this.student != null) {
+          this.route.navigate(["/login"]);
+          alert("No se encontraron datos");
           this.SpinnerService.hide();
         }
       });

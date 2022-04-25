@@ -9,7 +9,10 @@ import { LogoffComponent } from './core/components/logoff/logoff.component';
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    //component: LoginComponent
+    redirectTo: 'login',
+    pathMatch: 'full'
+
   },
   {
     path: 'login',

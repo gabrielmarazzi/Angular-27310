@@ -10,6 +10,8 @@ import { SharedModule } from '../shared/shared.module';
 import { LoginComponent } from './components/login/login.component';
 import { AppCoreRoutingModule } from './app-routing.module';
 import { LogoffComponent } from './components/logoff/logoff.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BarraCargaComponent } from './components/barra-carga/barra-carga.component';
 
 
 
@@ -19,14 +21,17 @@ import { LogoffComponent } from './components/logoff/logoff.component';
     MenuLateralComponent,
     MenuSuperiorComponent,
     LoginComponent,
-    LogoffComponent
+    LogoffComponent,
+    BarraCargaComponent
   ],
   imports: [
     CommonModule,
     AppMaterialModule,
     AppRoutingModule,
     NgxSpinnerModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   exports: [
