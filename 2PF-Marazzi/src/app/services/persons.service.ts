@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { catchError, Observable, Subject } from 'rxjs';
 import { Persons } from '../classes/persons';
 import { Students } from '../classes/students';
 
@@ -38,7 +38,30 @@ export class PersonsService {
 
     let params = new HttpParams();
     params = params.append('method', 'getPersons');
+    params = params.append('IdStudent', "");
+    params = params.append('Role', "4");
+    let Respuesta = this.http.get(this.serviceURL, { params: params });
+    return Respuesta;
+  }
 
+  obtenerDatosProfesoresObservable(): Observable<any> {
+    //call asmx to get courses
+
+    let params = new HttpParams();
+    params = params.append('method', 'getPersons');
+    params = params.append('IdStudent', "");
+    params = params.append('Role', "2");
+    let Respuesta = this.http.get(this.serviceURL, { params: params });
+    return Respuesta;
+  }
+
+  obtenerDatosAyudantesObservable(): Observable<any> {
+    //call asmx to get courses
+
+    let params = new HttpParams();
+    params = params.append('method', 'getPersons');
+    params = params.append('IdStudent', "");
+    params = params.append('Role', "3");
     let Respuesta = this.http.get(this.serviceURL, { params: params });
     return Respuesta;
   }
@@ -56,7 +79,7 @@ export class PersonsService {
     return Respuesta;
   }
 
-  crearActualizarEstudianteObservable(data: any): Observable<any> {
+  crearActualizarPersonaObservable(data: any): Observable<any> {
     let params = new HttpParams();
     params = params.append('method', 'ABMPersons');
     params = params.append('IdPersona', data.id);
@@ -69,12 +92,14 @@ export class PersonsService {
     params = params.append('Role', data.role);
     params = params.append('Image', data.image);
     params = params.append('Active', data.active == true ? "1" : "0");
-    params = params.append('Id', data.idStudent);
-    console.log(params)
+    params = params.append('Id', data.idP);
+    // console.log(params)
     let httpHeaders = new HttpHeaders();
     httpHeaders = httpHeaders.append('Content-Type', 'application/json');
 
     let Respuesta = this.http.get(this.serviceURL, { params: params });
     return Respuesta;
   }
+
+
 }

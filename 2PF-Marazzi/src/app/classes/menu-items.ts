@@ -14,7 +14,9 @@ export class MenuItems {
             new MenuItems(1, 'Inicio', 'home', '/home', true),
             new MenuItems(4, 'Cursos', 'book', '/courses', true),
             new MenuItems(5, 'Estudiantes', 'people', '/students', true),
-            new MenuItems(6, 'Incripciones', 'people', '/inscriptions', true),
+            new MenuItems(6, 'Profesores', 'people', '/teachers', true),
+            new MenuItems(7, 'Ayudantes', 'people', '/assistants', true),
+            new MenuItems(8, 'Incripciones', 'people', '/inscriptions', true),
             // new MenuItems(7, 'Usuarios', 'info', '/users', true),
             // new MenuItems(8, 'Salir', 'close', '/close', true),
         ]

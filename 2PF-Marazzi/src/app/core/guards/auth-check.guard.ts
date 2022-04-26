@@ -20,7 +20,7 @@ export class AuthCheckGuard implements CanActivate {
     let guid = sessionStorage.getItem("guid");
     if (user && guid) {
       this.authService.validateLogin(user, guid).subscribe((datos) => {
-        console.log("23 - Auth-check: ", datos);
+        //console.log("23 - Auth-check: ", datos);
         if (datos.res == "OK") {
           return true;
         } else {
@@ -36,5 +36,7 @@ export class AuthCheckGuard implements CanActivate {
 
 
   }
+
+
 
 }

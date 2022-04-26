@@ -1,3 +1,7 @@
+import { AyudantesRoutingModule } from './featured/ayudantes/ayudantes-routing.module';
+import { ProfesoresRoutingModule } from './featured/profesores/profesores-routing.module';
+import { AyudantesModule } from './featured/ayudantes/ayudantes.module';
+import { ProfesoresModule } from './featured/profesores/profesores.module';
 import { EstudiantesRoutingModule } from './featured/estudiantes/estudiantes-routing.module';
 import { CursosModule } from './featured/cursos/cursos.module';
 
@@ -9,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
-import { TeachersComponent } from './components/teachers/teachers.component';
 import { AboutComponent } from './components/about/about.component';
 import { HelpComponent } from './components/help/help.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -30,7 +33,6 @@ import { AppCoreRoutingModule } from './core/app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
-    TeachersComponent,
     AboutComponent,
     HelpComponent,
     PaginaNoEncontradaComponent
@@ -40,6 +42,8 @@ import { AppCoreRoutingModule } from './core/app-routing.module';
     BrowserModule,
     AppCoreRoutingModule,
     EstudiantesRoutingModule,
+    ProfesoresRoutingModule,
+    AyudantesRoutingModule,
     CursosRoutingModule,
     InscripcionesRoutingModule,
 
@@ -55,6 +59,8 @@ import { AppCoreRoutingModule } from './core/app-routing.module';
 
     CoreModule,
     EstudiantesModule,
+    ProfesoresModule,
+    AyudantesModule,
     CursosModule,
     InscripcionesModule,
     SharedModule

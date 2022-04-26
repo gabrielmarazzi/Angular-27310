@@ -76,7 +76,7 @@ export class StudentsGradesComponent implements OnInit {
         };
         */
         this.datosNotas.datos.push(NewGrade);
-        console.log(this.datosNotas.datos);
+        // console.log(this.datosNotas.datos);
       });
 
 

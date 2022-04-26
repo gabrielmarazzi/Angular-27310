@@ -16,6 +16,14 @@ export class Roles {
         ];
     }
 
+    public static getTeacherRole(): Roles {
+        return new Roles(2, 'Profesor');
+    }
+
+    public static getAssistantRole(): Roles {
+        return new Roles(3, 'Ayudante');
+    }
+
     public static getStudentRole(): Roles {
         return new Roles(4, 'Estudiante');
     }

@@ -28,7 +28,7 @@
         <mat-list-item *ngFor="let student of Curso.students">
             <!-- {{curso | json}} -->
             <mat-icon mat-list-icon>assignment</mat-icon>
-            <h4 appFormatoTitulos mat-line>{{student | formatoDatosStudent : 'nombre'}}</h4>
+            <h4 appFormatoTitulos mat-line>{{student | formatoDatosGeneral : 'nombre'}}</h4>
             <h4 appFormatoTitulos mat-line>Notas del curso</h4>
 
 

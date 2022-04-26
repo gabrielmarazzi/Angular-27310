@@ -1,16 +1,16 @@
-<h2 appFormatoTitulos>Información de {{student | formatoDatosGeneral : 'nombre'}}</h2>
+<h2 appFormatoTitulos>Información de {{teacher | formatoDatosGeneral : 'nombre'}}</h2>
 <button mat-raised-button color="accent" (click)="goBack()">
-    <mat-icon>arrow_back</mat-icon>Volver a estudiantes
+    <mat-icon>arrow_back</mat-icon>Volver a profesores
 </button>
 
 <mat-list>
     <mat-list-item>
-        <p class="espaciado"><img src="{{student.person.image}}" class="avatar"></p>
-        <h4 mat-line>Legajo: {{student.legajo}}</h4>
-        <p mat-line>Apellido y Nombres: {{student | formatoDatosGeneral : 'nombre'}}</p>
-        <p mat-line>Correo: {{student | formatoDatosGeneral : 'correo'}}</p>
-        <p mat-line>Edad: {{student | formatoDatosGeneral : 'edad'}}</p>
-        <p mat-line>Fecha de Nacimiento: {{student | formatoDatosGeneral : 'fechaNacimiento'}}</p>
+        <p class="espaciado"><img src="{{teacher.person.image}}" class="avatar"></p>
+        <h4 mat-line>Legajo: {{teacher.legajo}}</h4>
+        <p mat-line>Apellido y Nombres: {{teacher | formatoDatosGeneral : 'nombre'}}</p>
+        <p mat-line>Correo: {{teacher | formatoDatosGeneral : 'correo'}}</p>
+        <p mat-line>Edad: {{teacher | formatoDatosGeneral : 'edad'}}</p>
+        <p mat-line>Fecha de Nacimiento: {{teacher | formatoDatosGeneral : 'fechaNacimiento'}}</p>
 
     </mat-list-item>
     <br>
@@ -18,21 +18,21 @@
     <br>
     <h2 appFormatoTitulos>Cursos</h2>
     <mat-list>
-        <mat-list-item *ngFor="let curso of student.courses">
+        <mat-list-item *ngFor="let curso of teacher.courses">
             <mat-icon mat-list-icon>school</mat-icon>
             <h4 appFormatoTitulos mat-line>{{curso.name}}</h4>
             <p mat-line>{{curso.description}} - Inicio {{curso.startDate | date : 'dd/MM/YYY'}} - Finalización
                 {{curso.endDate
                 | date : 'dd/MM/YYY'}}</p>
             <p mat-line>Dificultad: {{curso.difficulty}}</p>
-            <h4 appFormatoTitulos mat-line>Notas del curso</h4>
-            <div *ngFor="let nota of student.grades" mat-line>
+            <!-- <h4 appFormatoTitulos mat-line>Notas del curso</h4>
+            <div *ngFor="let nota of teacher.grades" mat-line>
                 <div *ngIf="nota.course == curso.id">
 
                     Nota: {{nota.grade}} - Fecha: {{nota.date| date :'dd/MM/YYY'}} - Comentario:{{nota.descripcion}}
                 </div>
             </div>
-            <p mat-line *ngIf="student.grades.length == 0">Aún no ha recibido ninguna valoración</p>
+            <p mat-line *ngIf="teacher.grades.length == 0">Aún no ha recibido ninguna valoración</p> -->
             <button mat-raised-button color="primary" routerLink="/courses/{{curso.id}}">Ver Curso</button>
         </mat-list-item>
     </mat-list>

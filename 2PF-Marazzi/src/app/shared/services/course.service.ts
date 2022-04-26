@@ -110,7 +110,7 @@ export class CourseService {
     params = params.append('Active', data.active == true ? "1" : "0");
     let httpHeaders = new HttpHeaders();
     httpHeaders = httpHeaders.append('Content-Type', 'application/json');
-    console.log(this.serviceURL + "?" + params.toString());
+    // console.log(this.serviceURL + "?" + params.toString());
     let Respuesta = this.http.get(this.serviceURL, { params: params });
     return Respuesta;
   }

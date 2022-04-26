@@ -1,6 +1,6 @@
 <ngx-spinner bdColor="rgb(255, 255, 255)" size="medium" color="rgb(0,0,0)" type="ball-scale-ripple-multiple">
     <p *ngIf="student == null" style="color: rgb(7, 7, 7)">Cargando información... </p>
-    <p *ngIf="student != null" style="color: rgb(7, 7, 7)">{{student | formatoDatosStudent:'nombre'}}</p>
+    <p *ngIf="student != null" style="color: rgb(7, 7, 7)">{{student | formatoDatosGeneral:'nombre'}}</p>
 </ngx-spinner>
 
 <mat-toolbar class="mat-elevation-z8">
@@ -16,8 +16,8 @@
     <mat-sidenav #sidenav="matSidenav" mode="side" opened="true">
         <img class="avatar mat-elevation-z8" alt="imagen" src={{student.person.image}} />
 
-        <h4 class="name">{{student | formatoDatosStudent:'nombre'}}</h4>
-        <p class="designation">{{student | formatoDatosStudent:'role'}}</p>
+        <h4 class="name">{{student | formatoDatosGeneral:'nombre'}}</h4>
+        <p class="designation">{{student | formatoDatosGeneral:'role'}}</p>
 
         <mat-divider></mat-divider>
 

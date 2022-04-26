@@ -30,16 +30,7 @@ const routes: Routes = [
                 loadChildren: () => import('../featured/cursos/cursos.module').then(m => m.CursosModule),
                 canActivate: [AuthCheckGuard]
             },
-            // {
-            //     path: 'inscriptions/courses',
-            //     //component: CoursesComponent
-            //     loadChildren: () => import('../featured/cursos/cursos.module').then(m => m.CursosModule)
-            // },
-            // {
-            //     path: 'courses/:id',
-            //     //component: CoursesDetailComponent
-            //     loadChildren: () => import('../featured/cursos/cursos.module').then(m => m.CursosModule)
-            // },
+
             {
                 path: 'logoff',
                 component: LogoffComponent,

@@ -55,7 +55,7 @@ export class PersonsService {
     return Respuesta;
   }
 
-  crearActualizarEstudianteObservable(data: any): Observable<any> {
+  crearActualizarPersonaObservable(data: any): Observable<any> {
     let params = new HttpParams();
     params = params.append('method', 'ABMPersons');
     params = params.append('IdPersona', data.id);

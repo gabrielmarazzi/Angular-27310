@@ -3,9 +3,9 @@ import { Roles } from 'src/app/classes/roles';
 
 
 @Pipe({
-  name: 'formatoDatosStudent'
+  name: 'formatoDatosGeneral'
 })
-export class formatoDatosStudentPipe implements PipeTransform {
+export class formatoDatosGeneralPipe implements PipeTransform {
 
   transform(value: any, tipo: string): unknown {
     let valor: string = value;

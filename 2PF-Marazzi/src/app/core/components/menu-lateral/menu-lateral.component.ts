@@ -42,7 +42,7 @@ export class MenuLateralComponent implements OnInit {
     let id = parseInt(sessionStorage.getItem("id")!);
     let roleId: number = parseInt(sessionStorage.getItem("role")!)
     this.students$ = this.studentService.obtenerDatosPersonasObservableId(id, roleId)
-    console.log(id);
+    // console.log(id);
     this.studentsSuscripcion = this.students$
       .subscribe((datos) => {
         //console.log(datos);

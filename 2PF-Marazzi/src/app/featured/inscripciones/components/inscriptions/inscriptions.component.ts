@@ -44,7 +44,7 @@ export class InscriptionsComponent implements OnInit {
   }
 
   inicializarDatos() {
-    console.log(this.activatedRoute.url);
+    // console.log(this.activatedRoute.url);
     this.routeSubcription = this.activatedRoute.params.subscribe(
       (params) => {
         this.courseId = params['id'];
@@ -66,7 +66,7 @@ export class InscriptionsComponent implements OnInit {
 
       .subscribe((datos) => {
         this.Curso = datos[0];
-        console.log(this.Curso)
+        // console.log(this.Curso)
 
       });
   }
@@ -91,7 +91,7 @@ export class InscriptionsComponent implements OnInit {
 
   ABMCurso(fila: any, pTipo: string) {
     let id = fila.id;
-    console.log(fila);
+    // console.log(fila);
     if (id != "") {
       this.cursoService.ABMPersonToCurso(id, this.courseId, pTipo).subscribe((datos) => {
         this.inicializarDatos();

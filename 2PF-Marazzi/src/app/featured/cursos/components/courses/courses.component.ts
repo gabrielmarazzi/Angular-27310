@@ -36,7 +36,7 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.url.forEach((urlSegment) => {
-      console.log(urlSegment);
+      // console.log(urlSegment);
       urlSegment.forEach(datoSegmento => {
         if (datoSegmento.path == 'inscriptions') {
           this.administraInscripcion = true;

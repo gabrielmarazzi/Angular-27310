@@ -72,10 +72,10 @@ export class StudentsComponent implements OnInit, OnDestroy {
         role: 4,
         image: "./assets/img/avatars/" + random + ".jpg",
         active: true,
-        idStudent: newStudent.id,
+        idP: newStudent.id,
       }
 
-      this.PersonsService.crearActualizarEstudianteObservable(data).toPromise()
+      this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
         .then((datos) => {
           this.students$ = this.PersonsService.obtenerDatosEstudiantesObservable();
         })
@@ -130,10 +130,10 @@ export class StudentsComponent implements OnInit, OnDestroy {
         role: 4,
         image: "./assets/img/avatars/" + random + ".jpg",
         active: true,
-        idStudent: newStudent.id,
+        idP: newStudent.id,
       }
 
-      this.PersonsService.crearActualizarEstudianteObservable(data).toPromise()
+      this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
         .then((datos) => {
           this.students$ = this.PersonsService.obtenerDatosEstudiantesObservable();
         })
@@ -162,7 +162,7 @@ export class StudentsComponent implements OnInit, OnDestroy {
       active: false,
       idStudent: student.id
     }
-    this.PersonsService.crearActualizarEstudianteObservable(data).toPromise()
+    this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
       .then((datos) => {
         this.students$ = this.PersonsService.obtenerDatosEstudiantesObservable();
         //console.log(datos);
@@ -196,8 +196,9 @@ export class StudentsComponent implements OnInit, OnDestroy {
       active: true,
       idStudent: student.id
     }
-    this.PersonsService.crearActualizarEstudianteObservable(data).toPromise()
+    this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
       .then((datos) => {
+
         this.students$ = this.PersonsService.obtenerDatosEstudiantesObservable();
       })
 

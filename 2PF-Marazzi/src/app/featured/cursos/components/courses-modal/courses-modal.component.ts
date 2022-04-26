@@ -31,7 +31,7 @@ export class CoursesModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     if (data.opcion == 'editar') {
-      console.log(data)
+      // console.log(data)
       this.local_data = data;
       this.title = "Editar Curso " + data.name;
       this.course = data.course;

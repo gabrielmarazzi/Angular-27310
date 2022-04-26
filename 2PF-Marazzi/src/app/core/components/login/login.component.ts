@@ -37,12 +37,12 @@ export class LoginComponent implements OnInit {
     let username = this.formularioLogin.value.username;
     let password = this.formularioLogin.value.password;
     this.authService.login(username, password).subscribe((datos) => {
-      console.log(datos);
       if (datos.res == "OK") {
         sessionStorage.setItem("user", username);
         sessionStorage.setItem("guid", datos.guid);
         sessionStorage.setItem("id", datos.dataRole.id);
         sessionStorage.setItem("role", datos.dataRole.person.role);
+        sessionStorage.setItem("idPerson", datos.dataRole.person.id);
         this.router.navigate(["/home"]);
       } else {
         this.loginValid = false;

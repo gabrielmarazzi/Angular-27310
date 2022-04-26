@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { formatoDatosStudentPipe } from './pipes/formato-nombre.pipe';
+import { formatoDatosGeneralPipe } from './pipes/formato-nombre.pipe';
 import { FormatoTitulosDirective } from './directives/formato-titulos.directive';
 import { FormatoNombreCursosPipe } from './pipes/formato-nombre-cursos.pipe';
 
@@ -8,7 +8,7 @@ import { FormatoNombreCursosPipe } from './pipes/formato-nombre-cursos.pipe';
 
 @NgModule({
   declarations: [
-    formatoDatosStudentPipe,
+    formatoDatosGeneralPipe,
     FormatoTitulosDirective,
     FormatoNombreCursosPipe
   ],
@@ -16,7 +16,7 @@ import { FormatoNombreCursosPipe } from './pipes/formato-nombre-cursos.pipe';
     CommonModule
   ],
   exports: [
-    formatoDatosStudentPipe,
+    formatoDatosGeneralPipe,
     FormatoTitulosDirective,
     FormatoNombreCursosPipe,
   ]
