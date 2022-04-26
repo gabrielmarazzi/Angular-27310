@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { EventEmitter, Injectable } from '@angular/core';
+import { catchError, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +29,21 @@ export class GradesService {
     httpHeaders = httpHeaders.append('Content-Type', 'application/json');
 
     let Respuesta = this.http.get(this.serviceURL, { params: params });
-    return Respuesta;
+    return Respuesta.pipe(catchError(this.httpMensajeError));
+  }
+
+  private httpMensajeError(errorResponse: HttpErrorResponse) {
+    let mensajeError = new Subject<string>();
+
+    if (errorResponse.status == 200) {
+      console.warn("Metodo no encontrado");
+    } else {
+      if (errorResponse.error instanceof ErrorEvent) {
+        console.warn("Error en el front end: " + errorResponse.error.message);
+      } else {
+        console.warn("Error en el back end: " + errorResponse.error.Message);
+      }
+    }
+    return mensajeError;
   }
 }

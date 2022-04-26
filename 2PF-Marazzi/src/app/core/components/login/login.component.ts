@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router
+
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +31,7 @@ export class LoginComponent implements OnInit {
 
   doLogin() {
     this.ingresando = true;
+
     if (this.formularioLogin.valid) {
       this.loginValid = true;
     } else {
@@ -36,19 +39,20 @@ export class LoginComponent implements OnInit {
     }
     let username = this.formularioLogin.value.username;
     let password = this.formularioLogin.value.password;
-    this.authService.login(username, password).subscribe((datos) => {
-      if (datos.res == "OK") {
-        sessionStorage.setItem("user", username);
-        sessionStorage.setItem("guid", datos.guid);
-        sessionStorage.setItem("id", datos.dataRole.id);
-        sessionStorage.setItem("role", datos.dataRole.person.role);
-        sessionStorage.setItem("idPerson", datos.dataRole.person.id);
-        this.router.navigate(["/home"]);
-      } else {
-        this.loginValid = false;
-      }
+    this.authService.login(username, password)
+      .subscribe((datos) => {
+        if (datos.res == "OK") {
+          sessionStorage.setItem("user", username);
+          sessionStorage.setItem("guid", datos.guid);
+          sessionStorage.setItem("id", datos.dataRole.id);
+          sessionStorage.setItem("role", datos.dataRole.person.role);
+          sessionStorage.setItem("idPerson", datos.dataRole.person.id);
+          this.router.navigate(["/home"]);
+        } else {
+          this.loginValid = false;
+        }
 
-      this.ingresando = false;
-    });
+        this.ingresando = false;
+      });
   }
 }

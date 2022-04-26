@@ -1,8 +1,8 @@
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { identifierName } from '@angular/compiler';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable, of, Subject } from 'rxjs';
+import { catchError, map, Observable, of, Subject } from 'rxjs';
 import { Courses } from '../classes/courses';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -29,7 +29,7 @@ export class CourseService {
     let Respuesta = this.http.get(this.serviceURL, { params: params });
 
 
-    return Respuesta;
+    return Respuesta.pipe(catchError(this.httpMensajeError));
 
   }
 
@@ -41,7 +41,7 @@ export class CourseService {
     let Respuesta = this.http.get(this.serviceURL, { params: params });
 
 
-    return Respuesta;
+    return Respuesta.pipe(catchError(this.httpMensajeError));
 
   }
 
@@ -64,7 +64,7 @@ export class CourseService {
     httpHeaders = httpHeaders.append('Content-Type', 'application/json');
 
     let Respuesta = this.http.get(this.serviceURL, { params: params });
-    return Respuesta;
+    return Respuesta.pipe(catchError(this.httpMensajeError));
   }
 
   enableDisableCourse(data: any): Observable<any> {
@@ -84,7 +84,7 @@ export class CourseService {
     httpHeaders = httpHeaders.append('Content-Type', 'application/json');
 
     let Respuesta = this.http.get(this.serviceURL, { params: params });
-    return Respuesta;
+    return Respuesta.pipe(catchError(this.httpMensajeError));
   }
 
   filterActiveInactiveCourses(active: boolean): Observable<any> {
@@ -112,7 +112,7 @@ export class CourseService {
     httpHeaders = httpHeaders.append('Content-Type', 'application/json');
     // console.log(this.serviceURL + "?" + params.toString());
     let Respuesta = this.http.get(this.serviceURL, { params: params });
-    return Respuesta;
+    return Respuesta.pipe(catchError(this.httpMensajeError));
   }
 
 
@@ -129,10 +129,25 @@ export class CourseService {
     // console.log(this.serviceURL + "?" + params.toString());
     let Respuesta = this.http.get(this.serviceURL, { params: params });
 
-    return Respuesta;
+    return Respuesta.pipe(catchError(this.httpMensajeError));
 
   }
 
+
+  private httpMensajeError(errorResponse: HttpErrorResponse) {
+    let mensajeError = new Subject<string>();
+
+    if (errorResponse.status == 200) {
+      console.warn("Metodo no encontrado");
+    } else {
+      if (errorResponse.error instanceof ErrorEvent) {
+        console.warn("Error en el front end: " + errorResponse.error.message);
+      } else {
+        console.warn("Error en el back end: " + errorResponse.error.Message);
+      }
+    }
+    return mensajeError;
+  }
 }
 
 
