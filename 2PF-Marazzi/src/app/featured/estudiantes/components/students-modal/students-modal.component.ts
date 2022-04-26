@@ -55,7 +55,7 @@ export class StudentsModalComponent implements OnInit {
   agregarEstudiante() {
 
 
-    let person = new Persons(0, this.formularioEstudiante.value.nombre, this.formularioEstudiante.value.apellido, "", this.formularioEstudiante.value.correo, this.formularioEstudiante.value.fechaNacimiento, Roles.getStudentRole(), "", true);
+    let person = new Persons(0, this.formularioEstudiante.value.nombre, this.formularioEstudiante.value.apellido, this.formularioEstudiante.value.correo, "password", this.formularioEstudiante.value.fechaNacimiento, Roles.getStudentRole(), "", true);
     let student = new Students(0, this.formularioEstudiante.value.legajo, person, [], []);
     //console.log(this.local_data);
     //limpio el formulario

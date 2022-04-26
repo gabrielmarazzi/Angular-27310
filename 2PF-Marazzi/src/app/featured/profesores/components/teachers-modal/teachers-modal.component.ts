@@ -55,7 +55,7 @@ export class TeachersModalComponent implements OnInit {
   agregarProfesor() {
 
 
-    let person = new Persons(0, this.formularioProfesor.value.nombre, this.formularioProfesor.value.apellido, "", this.formularioProfesor.value.correo, this.formularioProfesor.value.fechaNacimiento, Roles.getTeacherRole(), "", true);
+    let person = new Persons(0, this.formularioProfesor.value.nombre, this.formularioProfesor.value.apellido, this.formularioProfesor.value.correo, "password", this.formularioProfesor.value.fechaNacimiento, Roles.getTeacherRole(), "", true);
     let teacher = new Teachers(0, this.formularioProfesor.value.legajo, person, []);
     //console.log(this.local_data);
     //limpio el formulario
@@ -76,10 +76,7 @@ export class TeachersModalComponent implements OnInit {
       this.local_data.profesor.person.image,
       this.local_data.profesor.person.active);
     let teacher = new Teachers(this.local_data.profesor.id, this.formularioProfesor.value.legajo, person, this.local_data.profesor.courses);
-    //limpio el formulario
-    console.log(this.local_data)
-    console.log(teacher)
-    debugger;
+
     this.dialogRef.close({ event: this.action, data: [this.local_data.profesor, teacher] });
   }
 
