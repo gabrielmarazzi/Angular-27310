@@ -11,6 +11,7 @@ const routes: Routes = [
     path: '',
     component: MenuLateralComponent,
     canActivate: [AuthCheckGuard],
+    canDeactivate: [AuthCheckGuard],
     children: [
 
       {

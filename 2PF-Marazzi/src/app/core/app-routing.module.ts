@@ -29,6 +29,7 @@ const routes: Routes = [
                 //component: CoursesComponent
                 loadChildren: () => import('../featured/cursos/cursos.module').then(m => m.CursosModule),
                 canActivate: [AuthCheckGuard]
+
             },
 
             {
