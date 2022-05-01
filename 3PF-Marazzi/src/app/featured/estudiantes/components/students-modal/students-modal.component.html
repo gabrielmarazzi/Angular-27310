@@ -1,0 +1,63 @@
+<h2>{{title}}</h2>
+<form class="row g-3" [formGroup]="formularioEstudiante" (ngSubmit)="guardarCambios()" novalidate>
+
+
+    <mat-form-field class="col-md-6">
+        <input matInput placeholder="Nombre" formControlName="nombre" required [(ngModel)]="student.person.name">
+        <mat-error *ngIf="formularioEstudiante.get('nombre')?.hasError('required')">
+            <strong>El nombre es requerido</strong>
+        </mat-error>
+        <mat-error *ngIf="formularioEstudiante.get('nombre')?.hasError('minLength')">
+            <strong>Debe ingresar mas de 3 caracteres</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+        <input matInput placeholder="Apellido" formControlName="apellido" required
+            [(ngModel)]="student.person.lastName">
+        <mat-error *ngIf="formularioEstudiante.get('apellido')?.hasError('required')">
+            <strong>El apellido es requerido</strong>
+        </mat-error>
+
+        <mat-error *ngIf="formularioEstudiante.get('apellido')?.hasError('minLength')">
+            <strong>Debe ingresar mas de 2 caracteres</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="col-md-6">
+        <input matInput placeholder="Legajo" formControlName="legajo" required [(ngModel)]="student.legajo">
+        <mat-error *ngIf="formularioEstudiante.get('legajo')?.hasError('required')">
+            <strong>El legajo es requerido</strong>
+        </mat-error>
+        <mat-error *ngIf="formularioEstudiante.get('legajo')?.hasError('pattern')">
+            <strong>El legajo debe incluir solo números</strong>
+        </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="col-md-6">
+        <input matInput [matDatepicker]="pickerDate" placeholder="Fecha de Nacimiento" formControlName="fechaNacimiento"
+            required [(ngModel)]="student.person.birthDay">
+        <mat-datepicker-toggle matSuffix [for]="pickerDate"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDate></mat-datepicker>
+        <mat-error *ngIf="formularioEstudiante.get('fechaNacimiento')?.hasError('required')">
+            <strong>La fecha de nacimiento es requerida</strong>
+        </mat-error>
+    </mat-form-field>
+
+
+    <mat-form-field class="col-md-12">
+        <input matInput type="email" placeholder="Correo electrónico" formControlName="correo" required
+            [(ngModel)]="student.person.email">
+        <mat-error *ngIf="formularioEstudiante.get('correo')?.hasError('required')">
+            <strong>El correo es requerido</strong>
+        </mat-error>
+    </mat-form-field>
+    <div class="col-md-6">
+        <button class="btn btn-primary" type="submit" [disabled]="formularioEstudiante.invalid">Guardar</button>
+    </div>
+    <div class="col-md-6">
+        <button class="btn btn-danger" type="button" align="end" (click)="cerrarModal()">Cancelar</button>
+    </div>
+
+</form>

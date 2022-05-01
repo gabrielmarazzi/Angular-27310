@@ -1,0 +1,39 @@
+Cree los siguientes tests (son 20 en total no los cree todos, porque me parecia mucho, y un tanto repetitivo)
+
+core -> services (auth)
+app -> services (person y course)
+featured -> ayudantes -> assistants y assistants-modal
+app-component
+
+Usuarios:
+
+	Admin: hola@chau.com clave: password
+	Profesor: abner@garcia.com clave: password
+	Ayudante: victoria@cordero.com clave: password
+	estudiante: gabriel@marazzi.com clave: password
+
+
+Guard:
+
+	Se asegura que este logueado antes de moverse por la aplicacion
+	y segun el role, si puede o no acceder a la pantalla
+
+Admin
+	Puede realizar todo
+Profesor
+	Puede ver todo.
+	No puede ABM cursos, pero puede administrar incripciones
+	ABM Ayudantes
+	ABM Estudiantes
+Ayudante
+	No puede ABM cursos, pero puede administrar incripciones
+	No puede acceder a item profesores (guard)
+	No puede ABM ayudantes, pero si ver detalles
+	ABM estudiantes
+Estudiante
+	Pagina Inicial
+	Vista solo lectura de cursos. 
+	Si entra a opción detalle (lupa).
+		No puede administrar inscripciones
+	
+
