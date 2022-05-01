@@ -13,10 +13,15 @@ Usuarios:
 	estudiante: gabriel@marazzi.com clave: password
 
 
+
+
 Guard:
 
 	Se asegura que este logueado antes de moverse por la aplicacion
 	y segun el role, si puede o no acceder a la pantalla
+
+
+Segmente un poco mas los permisos, separando en 4 roles.
 
 Admin
 	Puede realizar todo
@@ -35,5 +40,5 @@ Estudiante
 	Vista solo lectura de cursos. 
 	Si entra a opción detalle (lupa).
 		No puede administrar inscripciones
-	
+	En la pantalla inicial solo se muestran los cursos a los que esta inscripto
 
