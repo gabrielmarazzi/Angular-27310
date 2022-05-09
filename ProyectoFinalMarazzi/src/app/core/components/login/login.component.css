@@ -1,0 +1,25 @@
+.main-div {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 400px;
+    background-color: rgb(59, 117, 224);
+}
+
+mat-card {
+    min-width: 400px;
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+    border-radius: 10px;
+
+}
+
+mat-form-field {
+    display: block;
+}
+
+button {
+    margin-top: 1em;
+}

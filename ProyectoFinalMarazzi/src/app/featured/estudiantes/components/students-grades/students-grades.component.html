@@ -1,0 +1,88 @@
+<h2 appFormatoTitulos>Administración de notas de {{datosNotas.estudiante}}</h2>
+<div class="container row col-md-12">
+    <div class="col-md-6">
+
+        <h4 appFormatoTitulos>Notas del curso {{datosNotas.nombreCurso}} </h4>
+        <p *ngIf="datosNotas.datos.length == 0">No se registran notas</p>
+        <!-- <div *ngFor="let student of datosNotas.datos"> -->
+
+        <table>
+            <tr>
+                <td>Nota</td>
+                <td>Descripción</td>
+                <td>Fecha</td>
+                <td>Acciones</td>
+            </tr>
+            <tr *ngFor="let nota of datosNotas.datos">
+                <td *ngIf="nota.course == datosNotas.curso">
+
+                    {{nota.grade}}
+
+                </td>
+                <td *ngIf="nota.course == datosNotas.curso">
+
+                    {{nota.descripcion}}
+
+                </td>
+                <td *ngIf="nota.course == datosNotas.curso">
+
+                    {{nota.date| date :'dd/MM/YYY'}}
+
+                </td>
+                <td mat-line *ngIf="!datosNotas.readonly">
+                    <button mat-raised-button color="primary" (click)="deleteGrade(nota.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <!-- </div> -->
+    </div>
+    <div class="col-md-6" *ngIf="!datosNotas.readonly">
+        <h3 appFormatoTitulos>Agregar nota</h3>
+        <br>
+        <form class="row g-3" [formGroup]="formularioGrades">
+            <mat-form-field class="col-md-12">
+                <mat-select formControlName="nota">
+                    <mat-option>Seleccione una nota</mat-option>
+                    <mat-option value="1">1</mat-option>
+                    <mat-option value="2">2</mat-option>
+                    <mat-option value="3">3</mat-option>
+                    <mat-option value="4">4</mat-option>
+                    <mat-option value="5">5</mat-option>
+                    <mat-option value="6">6</mat-option>
+                    <mat-option value="7">7</mat-option>
+                    <mat-option value="8">8</mat-option>
+                    <mat-option value="9">9</mat-option>
+                    <mat-option value="10">10</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field class="col-md-12">
+                <input matInput placeholder="Descripción" [(ngModel)]="datosNotas.descripcion"
+                    formControlName="descripcion">
+                <mat-error>
+                    <span *ngIf="formularioGrades.get('descripcion')?.hasError('required')">
+                        El campo es requerido
+                    </span>
+                </mat-error>
+
+            </mat-form-field>
+            <mat-form-field class="col-md-6">
+                <input matInput [matDatepicker]="pickerDateFI" placeholder="Fecha" formControlName="fecha" required
+                    [(ngModel)]="datosNotas.fecha">
+                <mat-datepicker-toggle matSuffix [for]="pickerDateFI"></mat-datepicker-toggle>
+                <mat-datepicker #pickerDateFI></mat-datepicker>
+                <mat-error *ngIf="formularioGrades.get('Fecha')?.hasError('required')">
+                    <strong>La fecha es requerida</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <div class="col-md-6">
+                <button class="btn btn-primary" type="submit" (click)="addGrade()">Guardar</button>
+            </div>
+            <div class="col-md-6">
+                <button class="btn btn-danger" type="button" (click)="closeModal()" align="end">Cerrar</button>
+            </div>
+        </form>
+    </div>
+</div>
