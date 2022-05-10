@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Assistants } from 'src/app/classes/assistants';
 import { PersonsService } from 'src/app/services/persons.service';
 import { SharedFunctions } from 'src/app/classes/sharedFunctions';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-assistants',
@@ -28,6 +29,7 @@ export class AssistantsComponent implements OnInit {
   constructor(
     public dialogoRef: MatDialog,
     private PersonsService: PersonsService,
+    private notificationService: NotificationService
   ) { }
 
 
@@ -86,7 +88,7 @@ export class AssistantsComponent implements OnInit {
           this.assistants$ = this.PersonsService.obtenerDatosAyudantesObservable();
         })
 
-
+      this.notificationService.openSnackBar("Ayudante creado!", "Cerrar");
 
     })
   }
@@ -139,7 +141,7 @@ export class AssistantsComponent implements OnInit {
           this.assistants$ = this.PersonsService.obtenerDatosAyudantesObservable();
         })
 
-
+      this.notificationService.openSnackBar("Ayudante actualizado!", "Cerrar");
 
     })
   }
@@ -157,10 +159,10 @@ export class AssistantsComponent implements OnInit {
       password: "password",
       email: assistant.person.email,
       birthDay: nuevaFecha,
-      role: 2,
+      role: 3,
       image: "./assets/img/avatars/" + random + ".jpg",
-      active: true,
-      idStudent: assistant.id
+      active: enable,
+      idP: assistant.id
     }
     this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
       .then((datos) => {
@@ -175,7 +177,7 @@ export class AssistantsComponent implements OnInit {
 
       });
 
-
+    this.notificationService.openSnackBar("Ayudante actualizado!", "Cerrar");
 
   }
 

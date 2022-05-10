@@ -2,6 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -21,8 +22,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
-
+    private router: Router,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -48,8 +49,10 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("role", datos.dataRole.person.role);
           sessionStorage.setItem("idPerson", datos.dataRole.person.id);
           this.router.navigate(["/home"]);
+          this.notificationService.openSnackBar("Ingresando....", "");
         } else {
           this.loginValid = false;
+          this.notificationService.openSnackBar("Los datos ingresados son incorrectos", "");
         }
 
         this.ingresando = false;

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { NotificationService } from './services/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +10,6 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Proyecto Final - Marazzi';
   AuthService: any;
+
+
 }
