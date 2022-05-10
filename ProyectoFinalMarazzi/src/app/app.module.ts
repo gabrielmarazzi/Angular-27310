@@ -28,6 +28,9 @@ import { InscripcionesModule } from './featured/inscripciones/inscripciones.modu
 import { CursosRoutingModule } from './featured/cursos/cursos-routing.module';
 import { InscripcionesRoutingModule } from './featured/inscripciones/inscripciones-routing.module';
 import { AppCoreRoutingModule } from './core/app-routing.module';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -63,7 +66,9 @@ import { AppCoreRoutingModule } from './core/app-routing.module';
     AyudantesModule,
     CursosModule,
     InscripcionesModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [
     CourseService,
