@@ -7,7 +7,6 @@ import { CourseService } from 'src/app/services/course.service';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsGradesComponent } from 'src/app/featured/estudiantes/components/students-grades/students-grades.component';
 import { SharedFunctions } from 'src/app/classes/sharedFunctions';
-import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-courses-detail',
@@ -53,7 +52,7 @@ export class CoursesDetailComponent implements OnInit {
 
       .subscribe((datos) => {
         this.Curso = datos[0];
-        console.log(this.Curso);
+
         if (SharedFunctions.getRole() == 4) {
           this.currentPerson = SharedFunctions.getId();
           this.readonly = true;

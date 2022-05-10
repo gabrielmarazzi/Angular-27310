@@ -5,19 +5,19 @@
 </ngx-spinner>
 
 
-<h1 appFormatoTitulos>Detalle de Curso {{Curso.camada}} - {{Curso.name}} - Id: {{Curso.id}}</h1>
+<h1 appFormatoTitulos>Detalle de Curso {{Curso?.camada}} - {{Curso?.name}} - Id: {{Curso?.id}}</h1>
 
 <mat-list>
     <mat-list-item>
-        <p class="espaciado"><img src="{{Curso.image}}" class="avatar"></p>
-        <h4 mat-line>Camada: {{Curso.camada}}</h4>
-        <p mat-line>Nombre: {{Curso.name}}</p>
-        <p mat-line>Descripcion: {{Curso.description}}</p>
-        <p mat-line>Dificultad: {{Curso.difficulty}}</p>
+        <p class="espaciado"><img src="{{Curso?.image}}" class="avatar"></p>
+        <h4 mat-line>Camada: {{Curso?.camada}}</h4>
+        <p mat-line>Nombre: {{Curso?.name}}</p>
+        <p mat-line>Descripcion: {{Curso?.description}}</p>
+        <p mat-line>Dificultad: {{Curso?.difficulty}}</p>
         <p mat-line>Activo: {{Curso | formatoNombreCursos : 'activo'}}</p>
     </mat-list-item>
     <br>
-    <button mat-raised-button color="primary" routerLink="/inscriptions/{{Curso.id}}" [disabled]="!Curso.active"
+    <button mat-raised-button color="primary" routerLink="/inscriptions/{{Curso?.id}}" [disabled]="!Curso?.active"
         *ngIf="ABMInscripciones">Administrar incripciones</button>
     <br>
     <br>
@@ -25,7 +25,7 @@
     <br>
     <h2 appFormatoTitulos>Estudiantes</h2>
     <mat-list *ngIf="ABMInscripciones">
-        <mat-list-item *ngFor="let student of Curso.students">
+        <mat-list-item *ngFor="let student of Curso?.students">
             <!-- {{curso | json}} -->
             <mat-icon mat-list-icon>assignment</mat-icon>
             <h4 appFormatoTitulos mat-line>{{student | formatoDatosGeneral : 'nombre'}}</h4>
@@ -33,20 +33,20 @@
 
 
             <div *ngFor="let nota of student.grades" mat-line>
-                <div *ngIf="nota.course == Curso.id">
+                <div *ngIf="nota.course == Curso?.id">
 
                     Nota: {{nota.grade}} - Fecha: {{nota.date| date :'dd/MM/YYY'}} - Comentario: {{nota.descripcion}}
                 </div>
             </div>
-            <!-- <p mat-line *ngIf="Curso.students.grades.length == 0">Aún no ha recibido ninguna valoración</p> -->
-            <!--routerLink="/students/{{student.id}}/{{Curso.id}}"-->
+            <!-- <p mat-line *ngIf="Curso?.students.grades.length == 0">Aún no ha recibido ninguna valoración</p> -->
+            <!--routerLink="/students/{{student.id}}/{{Curso?.id}}"-->
             <button mat-raised-button color="primary" (click)="showModalStudentGrades(student)">Notas</button>
             &nbsp;
             <button mat-raised-button color="primary" routerLink="/students/{{student.id}}">Ver Estudiante</button>
         </mat-list-item>
     </mat-list>
     <mat-list *ngIf="!ABMInscripciones">
-        <mat-list-item *ngFor="let student of Curso.students">
+        <mat-list-item *ngFor="let student of Curso?.students">
             <!-- {{curso | json}} -->
             <div *ngIf="student.id == currentPerson">
 
@@ -56,7 +56,7 @@
 
 
                 <div *ngFor="let nota of student.grades" mat-line>
-                    <div *ngIf="nota.course == Curso.id">
+                    <div *ngIf="nota.course == Curso?.id">
 
                         Nota: {{nota.grade}} - Fecha: {{nota.date| date :'dd/MM/YYY'}} - Comentario:
                         {{nota.descripcion}}

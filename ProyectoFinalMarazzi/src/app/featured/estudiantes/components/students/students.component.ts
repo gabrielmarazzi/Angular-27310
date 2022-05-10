@@ -52,41 +52,41 @@ export class StudentsComponent implements OnInit, OnDestroy {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined) {
+        let newStudent = result.data[1];
+        newStudent.id = this.students.length + 1;
+        this.students.push(newStudent);
+        this.table.renderRows();
+        let random = Math.floor(Math.random() * 8) + 1;
+        //edicion en si
+        let fechaNacimiento = new Date(newStudent.person.birthDay);
+        let nuevaFecha = `${fechaNacimiento.getDate()}/${fechaNacimiento.getMonth() + 1}/${fechaNacimiento.getFullYear()}`;
+        let data = {
+          id: "",
+          legajo: newStudent.legajo,
+          name: newStudent.person.name,
+          lastName: newStudent.person.lastName,
+          password: "password",
+          email: newStudent.person.email,
+          birthDay: nuevaFecha,
+          role: 4,
+          image: "./assets/img/avatars/" + random + ".jpg",
+          active: true,
+          idP: newStudent.id,
+        }
 
-      let newStudent = result.data[1];
-      newStudent.id = this.students.length + 1;
-      this.students.push(newStudent);
-      this.table.renderRows();
-      let random = Math.floor(Math.random() * 8) + 1;
-      //edicion en si
-      let fechaNacimiento = new Date(newStudent.person.birthDay);
-      let nuevaFecha = `${fechaNacimiento.getDate()}/${fechaNacimiento.getMonth() + 1}/${fechaNacimiento.getFullYear()}`;
-      let data = {
-        id: "",
-        legajo: newStudent.legajo,
-        name: newStudent.person.name,
-        lastName: newStudent.person.lastName,
-        password: "password",
-        email: newStudent.person.email,
-        birthDay: nuevaFecha,
-        role: 4,
-        image: "./assets/img/avatars/" + random + ".jpg",
-        active: true,
-        idP: newStudent.id,
+        this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
+          .then((datos) => {
+            this.students$ = this.PersonsService.obtenerDatosEstudiantesObservable();
+          })
+
+        // this.studentsSuscripcion = this.students$
+        //   .subscribe((datos) => {
+        //     this.students = datos;
+        //     this.dataSource.data = this.students;
+        //     this.table.renderRows();
+        //   });
       }
-
-      this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
-        .then((datos) => {
-          this.students$ = this.PersonsService.obtenerDatosEstudiantesObservable();
-        })
-
-      // this.studentsSuscripcion = this.students$
-      //   .subscribe((datos) => {
-      //     this.students = datos;
-      //     this.dataSource.data = this.students;
-      //     this.table.renderRows();
-      //   });
-
     })
   }
 

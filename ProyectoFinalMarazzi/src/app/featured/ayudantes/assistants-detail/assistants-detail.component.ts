@@ -34,7 +34,7 @@ export class AssistantsDetailComponent implements OnInit {
           this.assistantSuscripcion = this.assistant$
             .subscribe((datos) => {
               this.assistant = datos[0];
-              console.log(this.assistant);
+              //console.log(this.assistant);
             });
         } else {
           this.router.navigate(['assistants']);

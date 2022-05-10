@@ -40,7 +40,7 @@ export class Roles {
     public static getRoleName(id: number): string {
         let roles = Roles.getRoles();
         let role = roles[id - 1];
-        return role.name;
+        return role?.name;
     }
 
 }

@@ -59,7 +59,7 @@ export class MenuLateralComponent implements OnInit {
         } else {
 
           this.route.navigate(["/login"]);
-          alert("No se encontraron datos");
+
           this.SpinnerService.hide();
         }
       });
