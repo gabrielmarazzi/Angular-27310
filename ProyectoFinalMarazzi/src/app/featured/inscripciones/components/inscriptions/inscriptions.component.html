@@ -4,7 +4,7 @@
     </p>
 </ngx-spinner>
 <h1 *ngIf="courseId == ''" appFormatoTitulos>Listado Estudiantes a inscribir </h1>
-<h1 *ngIf="courseId != ''" appFormatoTitulos>Listado Estudiantes inscriptos al curso {{Curso.camada}} - {{Curso.name}}
+<h1 *ngIf="courseId != ''" appFormatoTitulos>Listado Estudiantes inscriptos al curso {{Curso?.camada}} - {{Curso?.name}}
 </h1>
 
 <table mat-table [dataSource]="studentsInscriptos" #tableInscriptos class="mat-elevation-z8" class="tabla ">
@@ -72,8 +72,8 @@
 </table>
 <div *ngIf="studentsInscriptos.length == 0">No hay información de estudiantes</div>
 <br>
-<h1 *ngIf="courseId != ''" appFormatoTitulos>Listado Estudiantes no inscriptos al curso {{Curso.camada}} -
-    {{Curso.name}}
+<h1 *ngIf="courseId != ''" appFormatoTitulos>Listado Estudiantes no inscriptos al curso {{Curso?.camada}} -
+    {{Curso?.name}}
 </h1>
 
 <table mat-table [dataSource]="studentsNoInscriptos" #tableNoInscriptos class="mat-elevation-z8" class="tabla ">
