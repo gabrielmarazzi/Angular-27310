@@ -1,61 +1,73 @@
+import { AyudantesRoutingModule } from './featured/ayudantes/ayudantes-routing.module';
+import { ProfesoresRoutingModule } from './featured/profesores/profesores-routing.module';
+import { AyudantesModule } from './featured/ayudantes/ayudantes.module';
+import { ProfesoresModule } from './featured/profesores/profesores.module';
+import { EstudiantesRoutingModule } from './featured/estudiantes/estudiantes-routing.module';
+import { CursosModule } from './featured/cursos/cursos.module';
+
+import { PersonsService } from './services/persons.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MenuLateralComponent } from './components/menu-lateral/menu-lateral.component';
-import { MenuSuperiorComponent } from './components/menu-superior/menu-superior.component';
 import { MaterialModule } from './material.module';
-import { HomeComponent } from './components/home/home.component';
-import { StudentsComponent } from './components/students/students.component';
-import { TeachersComponent } from './components/teachers/teachers.component';
-import { CoursesComponent } from './components/courses/courses.component';
 import { AboutComponent } from './components/about/about.component';
 import { HelpComponent } from './components/help/help.component';
-import { formatoDatosStudentPipe } from './pipes/formato-nombre.pipe';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { CoursesDetailComponent } from './components/courses-detail/courses-detail.component';
 import { CourseService } from './services/course.service';
-import { StudentsModalComponent } from './components/students-modal/students-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { StudentsDetailComponent } from './components/students-detail/students-detail.component';
-import { FormatoTitulosDirective } from './directives/formato-titulos.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
+import { EstudiantesModule } from './featured/estudiantes/estudiantes.module';
+import { InscripcionesModule } from './featured/inscripciones/inscripciones.module';
+import { CursosRoutingModule } from './featured/cursos/cursos-routing.module';
+import { InscripcionesRoutingModule } from './featured/inscripciones/inscripciones-routing.module';
+import { AppCoreRoutingModule } from './core/app-routing.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuLateralComponent,
-    MenuSuperiorComponent,
-    HomeComponent,
-    StudentsComponent,
-    TeachersComponent,
-    CoursesComponent,
     AboutComponent,
     HelpComponent,
-    formatoDatosStudentPipe,
-    CoursesDetailComponent,
-    StudentsModalComponent,
-    StudentsDetailComponent,
-    FormatoTitulosDirective,
-    PaginaNoEncontradaComponent,
+    PaginaNoEncontradaComponent
 
   ],
   imports: [
     BrowserModule,
+    AppCoreRoutingModule,
+    EstudiantesRoutingModule,
+    ProfesoresRoutingModule,
+    AyudantesRoutingModule,
+    CursosRoutingModule,
+    InscripcionesRoutingModule,
+
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+
+    NgxSpinnerModule,
+
+    CoreModule,
+    EstudiantesModule,
+    ProfesoresModule,
+    AyudantesModule,
+    CursosModule,
+    InscripcionesModule,
+    SharedModule
   ],
   providers: [
-    CourseService
+    CourseService,
+    PersonsService
   ],
   bootstrap: [AppComponent]
 })

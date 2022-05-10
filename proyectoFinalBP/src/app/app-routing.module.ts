@@ -1,56 +1,31 @@
+import { LoginComponent } from './core/components/login/login.component';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './components/about/about.component';
-import { CoursesDetailComponent } from './components/courses-detail/courses-detail.component';
-import { CoursesComponent } from './components/courses/courses.component';
-import { HelpComponent } from './components/help/help.component';
-import { HomeComponent } from './components/home/home.component';
 import { PaginaNoEncontradaComponent } from './components/pagina-no-encontrada/pagina-no-encontrada.component';
-import { StudentsDetailComponent } from './components/students-detail/students-detail.component';
-import { StudentsComponent } from './components/students/students.component';
-import { TeachersComponent } from './components/teachers/teachers.component';
+import { LogoffComponent } from './core/components/logoff/logoff.component';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    //component: LoginComponent
+    redirectTo: 'login',
+    pathMatch: 'full'
+
   },
   {
-    path: 'home',
-    component: HomeComponent
+    path: 'login',
+    component: LoginComponent
   },
   {
-    path: 'students',
-    component: StudentsComponent
+    path: 'logoff',
+    component: LogoffComponent,
   },
-  {
-    path: 'students/:id',
-    component: StudentsDetailComponent
-  },
-  {
-    path: 'teachers',
-    component: TeachersComponent
-  },
-  {
-    path: 'courses',
-    component: CoursesComponent
-  },
-  {
-    path: 'courses/:id',
-    component: CoursesDetailComponent
-  },
-  {
-    path: 'about',
-    component: AboutComponent
-  },
-  {
-    path: 'help',
-    component: HelpComponent
-  },
-  //por cualuqier otra página	
   {
     path: '**',
     component: PaginaNoEncontradaComponent
+
   }
 ];
 

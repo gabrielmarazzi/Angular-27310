@@ -1,0 +1,98 @@
+<ngx-spinner bdColor="rgb(255, 255, 255)" size="medium" color="rgb(0,0,0)" type="ball-scale-ripple-multiple">
+    <p style="color: #000000; font-size: 20px;">
+        <span class="fa fa-spin fa-spinner"></span> Actualizando...
+    </p>
+</ngx-spinner>
+
+<h1 *ngIf="!administraInscripcion">Listado de Cursos</h1>
+<h1 *ngIf="administraInscripcion">Administración de inscripciones a Cursos</h1>
+
+<div *ngIf="ABMCurso">
+    <div class="button-container" *ngIf="!administraInscripcion">
+        <button mat-raised-button color="accent" (click)="addCourse()">
+            <mat-icon>add</mat-icon>Agregar Curso
+        </button>
+    </div>
+</div>
+
+<div class="">
+    <table mat-table [dataSource]="Cursos$" #table class="mat-elevation-z8" class="tabla ">
+        <ng-container matColumnDef="camada">
+            <th mat-header-cell *matHeaderCellDef> Camada </th>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.active ? 'enable' : 'disabled'"> {{
+                fila.camada }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.active ? 'enable' : 'disabled'"> {{
+                fila.name }} </td>
+        </ng-container>
+        <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef> Descripcion </th>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.active ? 'enable' : 'disabled'"> {{
+                fila.description }} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="fechaInicio">
+            <th mat-header-cell *matHeaderCellDef> Fecha de Inicio </th>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.active ? 'enable' : 'disabled'"> {{
+                fila.startDate | date : 'dd/MM/yyyy' }} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="fechaFin">
+            <th mat-header-cell *matHeaderCellDef> Fecha de Fin </th>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.active ? 'enable' : 'disabled'"> {{
+                fila.endDate | date : 'dd/MM/yyyy' }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dificultad">
+            <th mat-header-cell *matHeaderCellDef> Dificultad </th>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.active ? 'enable' : 'disabled'"> {{
+                fila.difficulty }} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="habilitado">
+            <th mat-header-cell *matHeaderCellDef> Habilitado </th>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.active ? 'enable' : 'disabled'">
+                {{ fila | formatoNombreCursos: 'activo'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="opciones" *ngIf="!administraInscripcion">
+            <th mat-header-cell *matHeaderCellDef> Opciones </th>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.active ? 'enable' : 'disabled'">
+                <button mat-button routerLink="/courses/{{fila.id}}">
+                    <mat-icon>search</mat-icon>
+                </button>
+                <button mat-icon-button color="primary" (click)="editCourse(fila)"
+                    *ngIf="(!fila.active|| fila.active) && ABMCurso">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="enableDisableCourse(fila,false)"
+                    *ngIf="fila.active && ABMCurso">
+                    <mat-icon>delete</mat-icon>
+                </button>
+
+                <button mat-icon-button color="warn" (click)="enableDisableCourse(fila,true)"
+                    *ngIf="!fila.active && ABMCurso">
+                    <mat-icon>add</mat-icon>
+                </button>
+
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="opciones" *ngIf="administraInscripcion">
+            <th mat-header-cell *matHeaderCellDef> Opciones </th>
+            <td mat-cell *matCellDef="let fila" [ngClass]="fila.active ? 'enable' : 'disabled'">
+                <button mat-raised-button color="primary" [disabled]="!fila.active"
+                    routerLink="/inscriptions/{{fila.id}}">Administrar
+                    incripciones</button>
+
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+    </table>
+    <div *ngIf="Cursos.length == 0">No hay información de Cursos</div>
+</div>
