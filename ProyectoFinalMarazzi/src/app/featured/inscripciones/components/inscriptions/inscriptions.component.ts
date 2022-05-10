@@ -5,6 +5,7 @@ import { Observable, Subscription } from 'rxjs';
 import { CourseService } from 'src/app/services/course.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-Inscriptions',
@@ -34,7 +35,8 @@ export class InscriptionsComponent implements OnInit {
     private cursoService: CourseService,
     private SpinnerService: NgxSpinnerService,
     private PersonsService: PersonsService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -97,6 +99,13 @@ export class InscriptionsComponent implements OnInit {
         this.inicializarDatos();
         this.tableInscriptos.renderRows();
         this.tableNoInscriptos.renderRows();
+        if (pTipo == "A") {
+
+          this.notificationService.openSnackBar("Inscripción realizada correctamente!", "Cerrar");
+        } else {
+
+          this.notificationService.openSnackBar("Desinscripción realizada correctamente!", "Cerrar");
+        }
       });
 
       //this.obtenerCurso(parseInt(this.courseId));

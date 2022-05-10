@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AppMaterialModule } from 'src/app/core/app.material.module';
 import { getRtlScrollAxisType } from '@angular/cdk/platform';
 import { SharedFunctions } from 'src/app/classes/sharedFunctions';
+import { NotificationService } from 'src/app/services/notification.service';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -35,6 +36,7 @@ export class CoursesComponent implements OnInit {
     private dialogoRef: MatDialog,
     private router: Router,
     private activatedRoute: ActivatedRoute,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -100,6 +102,7 @@ export class CoursesComponent implements OnInit {
       })
       this.table.renderRows();
 
+      this.notificationService.openSnackBar("Curso creado!", "Cerrar");
     });
   }
 
@@ -135,6 +138,7 @@ export class CoursesComponent implements OnInit {
       })
       this.table.renderRows();
 
+      this.notificationService.openSnackBar("Curso actualizado!", "Cerrar");
     });
   }
 
@@ -159,6 +163,7 @@ export class CoursesComponent implements OnInit {
       this.obtenerCursos();
     });
 
+    this.notificationService.openSnackBar("Curso actualizado!", "Cerrar");
 
   }
 

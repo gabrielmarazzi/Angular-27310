@@ -1,3 +1,4 @@
+import { NotificationService } from './../../../../services/notification.service';
 import { Roles } from 'src/app/classes/roles';
 
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
@@ -28,9 +29,11 @@ export class StudentsComponent implements OnInit, OnDestroy {
 
   dataSource = new MatTableDataSource();
 
+
   constructor(
     public dialogoRef: MatDialog,
     private PersonsService: PersonsService,
+    private notificationService: NotificationService
   ) { }
 
   ngOnInit(): void {
@@ -80,12 +83,13 @@ export class StudentsComponent implements OnInit, OnDestroy {
             this.students$ = this.PersonsService.obtenerDatosEstudiantesObservable();
           })
 
-        // this.studentsSuscripcion = this.students$
-        //   .subscribe((datos) => {
-        //     this.students = datos;
-        //     this.dataSource.data = this.students;
-        //     this.table.renderRows();
-        //   });
+        this.studentsSuscripcion = this.students$
+          .subscribe((datos) => {
+            this.students = datos;
+            this.dataSource.data = this.students;
+            this.table.renderRows();
+          });
+        this.notificationService.openSnackBar("Estudiante creado!", "Cerrar");
       }
     })
   }
@@ -132,13 +136,19 @@ export class StudentsComponent implements OnInit, OnDestroy {
         active: true,
         idP: newStudent.id,
       }
-
       this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
         .then((datos) => {
           this.students$ = this.PersonsService.obtenerDatosEstudiantesObservable();
+
         })
 
-
+      this.studentsSuscripcion = this.students$
+        .subscribe((datos) => {
+          this.students = datos;
+          this.dataSource.data = this.students;
+          this.table.renderRows();
+        });
+      this.notificationService.openSnackBar("Estudiante actualizado!", "Cerrar");
 
     })
   }
@@ -160,8 +170,9 @@ export class StudentsComponent implements OnInit, OnDestroy {
       role: 4,
       image: "./assets/img/avatars/" + random + ".jpg",
       active: false,
-      idStudent: student.id
+      idP: student.id
     }
+    console.log(data)
     this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
       .then((datos) => {
         this.students$ = this.PersonsService.obtenerDatosEstudiantesObservable();
@@ -172,8 +183,10 @@ export class StudentsComponent implements OnInit, OnDestroy {
       .subscribe((datos) => {
         this.students = datos;
         this.dataSource.data = this.students;
-
+        this.notificationService.openSnackBar("Estudiante actualizado!", "Cerrar");
       });
+
+
 
   }
 
@@ -194,12 +207,13 @@ export class StudentsComponent implements OnInit, OnDestroy {
       role: 4,
       image: "./assets/img/avatars/" + random + ".jpg",
       active: true,
-      idStudent: student.id
+      idP: student.id
     }
     this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
       .then((datos) => {
 
         this.students$ = this.PersonsService.obtenerDatosEstudiantesObservable();
+        this.notificationService.openSnackBar("Estudiante actualizado!", "Cerrar");
       })
 
     this.studentsSuscripcion = this.students$

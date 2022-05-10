@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Grades } from 'src/app/classes/grades';
 import { GradesService } from 'src/app/featured/services/grades.service';
+import { NotificationService } from 'src/app/services/notification.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class StudentsGradesComponent implements OnInit {
     public dialogRef: MatDialogRef<StudentsGradesComponent>,
     private gradeService: GradesService,
     @Inject(MAT_DIALOG_DATA) public data: any,
+    private notificationService: NotificationService
   ) {
     this.datosNotas = data;
 
@@ -41,7 +43,9 @@ export class StudentsGradesComponent implements OnInit {
     this.gradeService.ABMGrades(dataGrade, "B").toPromise().then(
       (data: any) => {
         this.datosNotas.datos.splice(this.datosNotas.datos.findIndex((x: { id: string; }) => x.id == idNota), 1);
+        this.notificationService.openSnackBar("Nota eliminada", "Cerrar");
       });
+
 
   }
   addGrade() {
@@ -77,6 +81,7 @@ export class StudentsGradesComponent implements OnInit {
         */
         this.datosNotas.datos.push(NewGrade);
         // console.log(this.datosNotas.datos);
+        this.notificationService.openSnackBar("Nota creada!", "Cerrar");
       });
 
 

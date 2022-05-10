@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Teachers } from 'src/app/classes/teachers';
 import { PersonsService } from 'src/app/services/persons.service';
 import { SharedFunctions } from 'src/app/classes/sharedFunctions';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-teachers',
@@ -29,7 +30,8 @@ export class TeachersComponent implements OnInit {
   constructor(
     public dialogoRef: MatDialog,
     private PersonsService: PersonsService,
-    private router: Router
+    private router: Router,
+    private notificationService: NotificationService
   ) { }
 
 
@@ -87,6 +89,7 @@ export class TeachersComponent implements OnInit {
         })
 
 
+      this.notificationService.openSnackBar("Profesor creado!", "Cerrar");
 
     })
   }
@@ -141,6 +144,7 @@ export class TeachersComponent implements OnInit {
         })
 
 
+      this.notificationService.openSnackBar("Profesor actualizado!", "Cerrar");
 
     })
   }
@@ -160,8 +164,8 @@ export class TeachersComponent implements OnInit {
       birthDay: nuevaFecha,
       role: 2,
       image: "./assets/img/avatars/" + random + ".jpg",
-      active: true,
-      idStudent: teacher.id
+      active: enable,
+      idP: teacher.id
     }
     this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
       .then((datos) => {
@@ -177,6 +181,7 @@ export class TeachersComponent implements OnInit {
       });
 
 
+    this.notificationService.openSnackBar("Profesor actualizado!", "Cerrar");
 
   }
 
