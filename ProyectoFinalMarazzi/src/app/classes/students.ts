@@ -16,3 +16,17 @@ export class Students {
 
 }
 
+export interface Students {
+
+    id: number;
+    legajo: string;
+    person: Persons;
+    courses: Courses[];
+    grades: Grades[];
+
+
+
+
+
+}
+

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { FakeData } from 'src/app/classes/fake-data';
-import { Students } from 'src/app/classes/students';
 import { PersonsService } from 'src/app/services/persons.service';
 
 @Component({

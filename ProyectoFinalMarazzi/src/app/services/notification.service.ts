@@ -20,4 +20,15 @@ export class NotificationService {
       verticalPosition: 'top'
     });
   }
+
+  public openSnackBarNoTimeout(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 0,
+      verticalPosition: 'top'
+    });
+  }
+
+  public closeSnackBar() {
+    this.snackBar.dismiss();
+  }
 }

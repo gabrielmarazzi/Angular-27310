@@ -31,6 +31,7 @@ import { AppCoreRoutingModule } from './core/app-routing.module';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { ROOT_REDUCERS } from './state/app.state';
 
 
 @NgModule({
@@ -67,8 +68,8 @@ import { environment } from '../environments/environment';
     CursosModule,
     InscripcionesModule,
     SharedModule,
-    StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreModule.forRoot(ROOT_REDUCERS),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production, name: "NGRX Testing" })
   ],
   providers: [
     CourseService,

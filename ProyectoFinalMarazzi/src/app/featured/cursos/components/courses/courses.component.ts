@@ -12,6 +12,10 @@ import { AppMaterialModule } from 'src/app/core/app.material.module';
 import { getRtlScrollAxisType } from '@angular/cdk/platform';
 import { SharedFunctions } from 'src/app/classes/sharedFunctions';
 import { NotificationService } from 'src/app/services/notification.service';
+import { selectorCourses } from 'src/app/state/selectors/course.selector';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { LoadCourses, LoadCoursesSuccess } from 'src/app/state/actions/course.action';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -30,13 +34,15 @@ export class CoursesComponent implements OnInit {
   routeSubcription!: Subscription;
   administraInscripcion: boolean = false;
   ABMCurso: boolean = false;
+  sinDatos: boolean = false;
   constructor(
     private cursoService: CourseService,
     private SpinnerService: NgxSpinnerService,
     private dialogoRef: MatDialog,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {
@@ -56,17 +62,10 @@ export class CoursesComponent implements OnInit {
   }
 
   obtenerCursos() {
-    this.SpinnerService.show();
-    this.Cursos$ = this.cursoService.obtenerDatosCursosObservable();
-    // this.filterCourses()
-    this.CursosSuscripcion = this.Cursos$
 
-      .subscribe((datos) => {
-        this.Cursos = datos;
+    this.Cursos$ = this.store.select(selectorCourses);
 
 
-        this.SpinnerService.hide();
-      });
   }
 
   addCourse() {
@@ -98,6 +97,7 @@ export class CoursesComponent implements OnInit {
         image: `https://picsum.photos/id/${random}/200/200`
       }
       this.cursoService.ABMCourse(data).toPromise().then((datos) => {
+        this.cargarCursos();
         this.obtenerCursos();
       })
       this.table.renderRows();
@@ -107,39 +107,55 @@ export class CoursesComponent implements OnInit {
   }
 
   editCourse(course: any) {
+    const clone = Object.assign({}, course);
     const dialogRef = this.dialogoRef.open(CoursesModalComponent, {
       data: {
-        course: course,
+        course: clone,
         opcion: 'editar'
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      let newCourse = result.data[1];
-      this.Cursos.push(newCourse);
-      let fechaInicio = new Date(newCourse.startDate);
-      let nuevaFechaInicio = `${fechaInicio.getDate()}/${fechaInicio.getMonth() + 1}/${fechaInicio.getFullYear()}`;
-      let fechaFin = new Date(newCourse.endDate);
-      let nuevaFechaFin = `${fechaFin.getDate()}/${fechaFin.getMonth() + 1}/${fechaFin.getFullYear()}`;
-      let random = Math.floor(Math.random() * 8) + 1;
-      let data = {
-        id: newCourse.id,
-        camada: newCourse.camada,
-        name: newCourse.name,
-        description: newCourse.description,
-        startDate: nuevaFechaInicio,
-        endDate: nuevaFechaFin,
-        level: newCourse.level,
-        difficulty: newCourse.difficulty,
-        active: newCourse.active,
-        image: `https://picsum.photos/id/${random}/200/200`
-      }
-      this.cursoService.ABMCourse(data).toPromise().then((datos) => {
-        this.obtenerCursos();
-      })
-      this.table.renderRows();
+      if (result != undefined) {
+        let newCourse = result.data[1];
+        this.Cursos.push(newCourse);
+        let fechaInicio = new Date(newCourse.startDate);
+        let nuevaFechaInicio = `${fechaInicio.getDate()}/${fechaInicio.getMonth() + 1}/${fechaInicio.getFullYear()}`;
+        let fechaFin = new Date(newCourse.endDate);
+        let nuevaFechaFin = `${fechaFin.getDate()}/${fechaFin.getMonth() + 1}/${fechaFin.getFullYear()}`;
+        let random = Math.floor(Math.random() * 8) + 1;
+        let data = {
+          id: newCourse.id,
+          camada: newCourse.camada,
+          name: newCourse.name,
+          description: newCourse.description,
+          startDate: nuevaFechaInicio,
+          endDate: nuevaFechaFin,
+          level: newCourse.level,
+          difficulty: newCourse.difficulty,
+          active: newCourse.active,
+          image: `https://picsum.photos/id/${random}/200/200`
+        }
+        // console.log(data)
+        this.cursoService.ABMCourse(data).toPromise().then((datos) => {
+          this.cargarCursos();
+        })
+        this.table.renderRows();
 
-      this.notificationService.openSnackBar("Curso actualizado!", "Cerrar");
+        this.notificationService.openSnackBar("Curso actualizado!", "Cerrar");
+      }
     });
+
+  }
+
+  cargarCursos() {
+    this.store.dispatch(LoadCourses());
+    this.CursosSuscripcion = this.cursoService.obtenerDatosCursosObservable()
+      .subscribe((datos) => {
+        // console.log(datos)
+        this.store.dispatch(LoadCoursesSuccess({ courses: datos }));
+        this.obtenerCursos();
+      });
+    //this.store.select(selectorCourses)
   }
 
   enableDisableCourse(course: any, enable: boolean) {
@@ -160,7 +176,8 @@ export class CoursesComponent implements OnInit {
       active: enable
     }
     this.cursoService.enableDisableCourse(data).toPromise().then((datos) => {
-      this.obtenerCursos();
+      // this.obtenerCursos();
+      this.cargarCursos();
     });
 
     this.notificationService.openSnackBar("Curso actualizado!", "Cerrar");

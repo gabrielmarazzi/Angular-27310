@@ -8,7 +8,7 @@
             <button #filtro class="btn btn-primary" (click)="filterCourses()">{{textoBoton}}</button>
         </div> -->
     </div>
-    <mat-card class="card" fxFlex.lt-md="100%" *ngFor="let Curso of Cursos ">
+    <mat-card class="card" fxFlex.lt-md="100%" *ngFor="let Curso of Cursos$ | async ">
         <mat-card-header>
             <mat-card-title>
                 <h4 appFormatoTitulos>{{Curso.name}}</h4>

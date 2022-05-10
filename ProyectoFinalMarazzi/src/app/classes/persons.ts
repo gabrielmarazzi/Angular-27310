@@ -15,3 +15,19 @@ export class Persons {
 
 
 }
+
+export interface Persons {
+
+    id: number;
+    name: string;
+    lastName: string;
+    email: string;
+    password: string;
+    birthDay: Date;
+    role: Roles;
+    image: string;
+    active: boolean;
+
+
+
+}
