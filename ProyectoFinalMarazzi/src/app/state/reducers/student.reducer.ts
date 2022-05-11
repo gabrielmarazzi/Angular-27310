@@ -1,5 +1,5 @@
 
-import { LoadStudentIdSuccess, LoadStudents, LoadStudentsSuccess } from './../actions/student.action';
+import { LoadStudentIdSuccess, LoadStudents, LoadStudentsInscriptionSuccess, LoadStudentsNoInscriptionSuccess, LoadStudentsSuccess } from './../actions/student.action';
 import { createReducer, on } from "@ngrx/store";
 import { StudentsState } from "src/app/classes/students.state";
 
@@ -21,6 +21,12 @@ export const StudentReducer = createReducer(
     }),
     on(LoadStudentIdSuccess, (state, { students }) => {
         return { ...state, loading: false, students };
-    })
+    }),
+    on(LoadStudentsInscriptionSuccess, (state, { students }) => {
+        return { ...state, loading: false, students };
+    }),
+    on(LoadStudentsNoInscriptionSuccess, (state, { students }) => {
+        return { ...state, loading: false, students };
+    }),
 
 )

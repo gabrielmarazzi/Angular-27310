@@ -20,4 +20,14 @@ export const selectStudentId = createSelector(
     (state: StudentsState) => state.students
 );
 
+export const selectStudentInscriptos = createSelector(
+    getStudents,
+    (state: StudentsState) => state.students
+);
+
+export const selectStudentNoInscriptos = createSelector(
+    getStudents,
+    (state: StudentsState) => state.students
+);
+
 

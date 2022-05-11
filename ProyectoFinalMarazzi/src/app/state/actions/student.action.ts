@@ -14,3 +14,13 @@ export const LoadStudentIdSuccess = createAction(
     "[Student] Load Student Id Success",
     props<{ students: Students[] }>()
 );
+
+export const LoadStudentsInscriptionSuccess = createAction(
+    "[Student] Load Students Inscription Success",
+    props<{ students: Students[] }>()
+);
+
+export const LoadStudentsNoInscriptionSuccess = createAction(
+    "[Student] Load Students NO Inscription Success",
+    props<{ students: Students[] }>()
+);
