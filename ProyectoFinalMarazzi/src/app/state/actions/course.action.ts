@@ -9,3 +9,9 @@ export const LoadCoursesSuccess = createAction(
     "[Course] Load Courses Success",
     props<{ courses: Courses[] }>()
 );
+
+
+export const LoadCourseIdSuccess = createAction(
+    "[Course] Load Course Id Success",
+    props<{ courses: Courses[] }>()
+);

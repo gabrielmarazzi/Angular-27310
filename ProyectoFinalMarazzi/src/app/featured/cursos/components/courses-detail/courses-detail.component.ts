@@ -1,3 +1,5 @@
+import { LoadCourseIdSuccess } from './../../../../state/actions/course.action';
+import { LoadCourses } from 'src/app/state/actions/course.action';
 
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Component, OnInit } from '@angular/core';
@@ -7,6 +9,9 @@ import { CourseService } from 'src/app/services/course.service';
 import { MatDialog } from '@angular/material/dialog';
 import { StudentsGradesComponent } from 'src/app/featured/estudiantes/components/students-grades/students-grades.component';
 import { SharedFunctions } from 'src/app/classes/sharedFunctions';
+import { AppState } from 'src/app/state/app.state';
+import { Store } from '@ngrx/store';
+import { selectCourseId } from 'src/app/state/selectors/course.selector';
 
 @Component({
   selector: 'app-courses-detail',
@@ -29,6 +34,7 @@ export class CoursesDetailComponent implements OnInit {
     private cursoService: CourseService,
     private SpinnerService: NgxSpinnerService,
     public dialogoRef: MatDialog,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {
@@ -46,21 +52,29 @@ export class CoursesDetailComponent implements OnInit {
 
   obtenerCurso(id: number) {
     this.SpinnerService.show();
-    this.Curso$ = this.cursoService.obtenerDatosCursoObservableById(id);
-    // this.filterCourses()
-    this.CursoSuscripcion = this.Curso$
+    // this.Curso$ = this.cursoService.obtenerDatosCursoObservableById(id);
+    // // this.filterCourses()
+    // this.CursoSuscripcion = this.Curso$
 
+    //   .subscribe((datos) => {
+    //     this.Curso = datos[0];
+
+    //     if (SharedFunctions.getRole() == 4) {
+    //       this.currentPerson = SharedFunctions.getId();
+    //       this.readonly = true;
+    //     }
+    //     this.SpinnerService.hide();
+    //   });
+    this.store.dispatch(LoadCourses());
+
+    this.cursoService.obtenerDatosCursoObservableById(id)
       .subscribe((datos) => {
         this.Curso = datos[0];
-
-        if (SharedFunctions.getRole() == 4) {
-          this.currentPerson = SharedFunctions.getId();
-          this.readonly = true;
-        }
+        this.store.dispatch(LoadCourseIdSuccess({ courses: datos }));
         this.SpinnerService.hide();
+
       });
-
-
+    this.Curso = this.store.select(selectCourseId)
 
   }
 
@@ -79,6 +93,6 @@ export class CoursesDetailComponent implements OnInit {
 
   ngOnDestroy() {
     this.routeSubcription.unsubscribe();
-    this.CursoSuscripcion.unsubscribe();
+    // this.CursoSuscripcion.unsubscribe();
   }
 }

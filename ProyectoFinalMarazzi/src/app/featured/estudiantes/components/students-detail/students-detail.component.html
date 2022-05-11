@@ -5,7 +5,7 @@
 
 <mat-list>
     <mat-list-item>
-        <p class="espaciado"><img src="{{student?.person.image}}" class="avatar"></p>
+        <p class="espaciado"><img src="{{student?.person?.image}}" class="avatar"></p>
         <h4 mat-line>Legajo: {{student?.legajo}}</h4>
         <p mat-line>Apellido y Nombres: {{student | formatoDatosGeneral : 'nombre'}}</p>
         <p mat-line>Correo: {{student | formatoDatosGeneral : 'correo'}}</p>

@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { CoursesState } from "src/app/classes/courses.state";
-import { LoadCourses, LoadCoursesSuccess } from "../actions/course.action";
+import { LoadCourseIdSuccess, LoadCourses, LoadCoursesSuccess } from "../actions/course.action";
 
 export const InitialStateCourse: CoursesState = {
     loading: false,
@@ -16,6 +16,9 @@ export const CoursesReducer = createReducer(
         //Esto fue un test solamente
         let xx = { ...state, loading: false, courses };
         return xx;
+    }),
+    on(LoadCourseIdSuccess, (state, { courses }) => {
+        return { ...state, loading: false, courses };
     })
 
 )
