@@ -2,10 +2,15 @@ import { Students } from '../../classes/students';
 import { createAction, props } from "@ngrx/store";
 
 export const LoadStudents = createAction(
-    "[STudent] Load Students"
+    "[Student] Load Students"
 );
 
 export const LoadStudentsSuccess = createAction(
-    "[STudent] Load Students Success",
+    "[Student] Load Students Success",
+    props<{ students: Students[] }>()
+);
+
+export const LoadStudentIdSuccess = createAction(
+    "[Student] Load Student Id Success",
     props<{ students: Students[] }>()
 );

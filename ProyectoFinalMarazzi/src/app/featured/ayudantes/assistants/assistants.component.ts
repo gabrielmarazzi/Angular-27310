@@ -1,3 +1,5 @@
+import { selectAssistants } from './../../../state/selectors/assistant.selector';
+
 import { AssistantsModalComponent } from './../assistants-modal/assistants-modal.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,6 +9,10 @@ import { Assistants } from 'src/app/classes/assistants';
 import { PersonsService } from 'src/app/services/persons.service';
 import { SharedFunctions } from 'src/app/classes/sharedFunctions';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { LoadAssistants, LoadAssistantsSuccess } from 'src/app/state/actions/assistant.action';
+import { Persons } from 'src/app/classes/persons';
 
 @Component({
   selector: 'app-assistants',
@@ -29,27 +35,38 @@ export class AssistantsComponent implements OnInit {
   constructor(
     public dialogoRef: MatDialog,
     private PersonsService: PersonsService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private store: Store<AppState>
   ) { }
 
 
   ngOnInit(): void {
 
-    this.assistants$ = this.PersonsService.obtenerDatosAyudantesObservable();
-    this.assistantsSuscripcion = this.assistants$
-      .subscribe((datos) => {
-        this.assistants = datos;
-        this.dataSource.data = this.assistants;
-        // console.log(this.assistant);
-      });
-
+    // this.assistants$ = this.PersonsService.obtenerDatosAyudantesObservable();
+    // this.assistantsSuscripcion = this.assistants$
+    //   .subscribe((datos) => {
+    //     this.assistants = datos;
+    //     this.dataSource.data = this.assistants;
+    //     // console.log(this.assistant);
+    //   });
+    this.cargarAssistants();
     if (SharedFunctions.getRole() <= 2) {
       this.ABMAssistants = true;
     }
   }
 
+  cargarAssistants() {
+    this.store.dispatch(LoadAssistants());
+    this.assistantsSuscripcion = this.PersonsService.obtenerDatosAyudantesObservable();
+    this.assistantsSuscripcion.subscribe((datos: any) => {
+
+      this.store.dispatch(LoadAssistantsSuccess({ assistants: datos }));
+    });
+    this.assistants$ = this.store.select(selectAssistants);
+  }
+
   ngOnDestroy(): void {
-    this.assistantsSuscripcion.unsubscribe();
+    // this.assistantsSuscripcion.unsubscribe();
   }
 
   addAssistant() {
@@ -85,10 +102,12 @@ export class AssistantsComponent implements OnInit {
 
       this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
         .then((datos: any) => {
-          this.assistants$ = this.PersonsService.obtenerDatosAyudantesObservable();
+          //this.assistants$ = this.PersonsService.obtenerDatosAyudantesObservable();
+          this.cargarAssistants();
+          this.notificationService.openSnackBar("Ayudante creado!", "Cerrar");
         })
 
-      this.notificationService.openSnackBar("Ayudante creado!", "Cerrar");
+
 
     })
   }
@@ -103,9 +122,11 @@ export class AssistantsComponent implements OnInit {
   }
 
   editAssistant(assistant: Assistants) {
+    const person = new Persons(assistant.person.id, assistant.person.name, assistant.person.lastName, assistant.person.email, assistant.person.password, assistant.person.birthDay, assistant.person.role, assistant.person.image, assistant.person.active);
+    const assistantClone = new Assistants(assistant.id, assistant.legajo, person, assistant.courses);
     const dialogRef = this.dialogoRef.open(AssistantsModalComponent, {
       data: {
-        ayudante: assistant,
+        ayudante: assistantClone,
         opcion: 'editar'
       }
     });
@@ -138,10 +159,12 @@ export class AssistantsComponent implements OnInit {
 
       this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
         .then((datos) => {
-          this.assistants$ = this.PersonsService.obtenerDatosAyudantesObservable();
+          //this.assistants$ = this.PersonsService.obtenerDatosAyudantesObservable();
+          this.cargarAssistants();
+          this.notificationService.openSnackBar("Ayudante actualizado!", "Cerrar");
         })
 
-      this.notificationService.openSnackBar("Ayudante actualizado!", "Cerrar");
+
 
     })
   }
@@ -167,17 +190,19 @@ export class AssistantsComponent implements OnInit {
     this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
       .then((datos) => {
 
-        this.assistants$ = this.PersonsService.obtenerDatosAyudantesObservable();
+        //this.assistants$ = this.PersonsService.obtenerDatosAyudantesObservable();
+        this.cargarAssistants();
+        this.notificationService.openSnackBar("Ayudante actualizado!", "Cerrar");
       })
 
-    this.assistantsSuscripcion = this.assistants$
-      .subscribe((datos) => {
-        this.assistants = datos;
-        this.dataSource.data = this.assistants;
+    // this.assistantsSuscripcion = this.assistants$
+    //   .subscribe((datos) => {
+    //     this.assistants = datos;
+    //     this.dataSource.data = this.assistants;
 
-      });
+    //   });
 
-    this.notificationService.openSnackBar("Ayudante actualizado!", "Cerrar");
+    // this.notificationService.openSnackBar("Ayudante actualizado!", "Cerrar");
 
   }
 

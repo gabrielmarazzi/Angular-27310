@@ -1,3 +1,5 @@
+import { selectTeachers } from './../../../../state/selectors/teacher.selector';
+import { LoadTeachers, LoadTeachersSuccess } from './../../../../state/actions/teacher.action';
 import { Router } from '@angular/router';
 import { TeachersModalComponent } from './../teachers-modal/teachers-modal.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -6,8 +8,10 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Teachers } from 'src/app/classes/teachers';
 import { PersonsService } from 'src/app/services/persons.service';
-import { SharedFunctions } from 'src/app/classes/sharedFunctions';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/state/app.state';
+import { Persons } from 'src/app/classes/persons';
 
 @Component({
   selector: 'app-teachers',
@@ -31,25 +35,27 @@ export class TeachersComponent implements OnInit {
     public dialogoRef: MatDialog,
     private PersonsService: PersonsService,
     private router: Router,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private store: Store<AppState>
   ) { }
 
 
+  cargarTeachers() {
+    this.store.dispatch(LoadTeachers());
+    this.teachersSuscripcion = this.PersonsService.obtenerDatosProfesoresObservable();
+    this.teachersSuscripcion.subscribe((datos: any) => {
+
+      this.store.dispatch(LoadTeachersSuccess({ teachers: datos }));
+    });
+    this.teachers$ = this.store.select(selectTeachers);
+  }
+
   ngOnInit(): void {
-    // if (SharedFunctions.getRole() > 2) {
-    //   this.router.navigate(['/home']);
-    // }
-    this.teachers$ = this.PersonsService.obtenerDatosProfesoresObservable();
-    this.teachersSuscripcion = this.teachers$
-      .subscribe((datos) => {
-        this.teachers = datos;
-        this.dataSource.data = this.teachers;
-        // console.log(this.teacher);
-      });
+    this.cargarTeachers();
   }
 
   ngOnDestroy(): void {
-    this.teachersSuscripcion.unsubscribe();
+    //this.teachersSuscripcion.unsubscribe();
   }
 
   addTeacher() {
@@ -85,11 +91,13 @@ export class TeachersComponent implements OnInit {
 
       this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
         .then((datos: any) => {
-          this.teachers$ = this.PersonsService.obtenerDatosProfesoresObservable();
+          //this.teachers$ = this.PersonsService.obtenerDatosProfesoresObservable();
+          this.cargarTeachers();
+          this.notificationService.openSnackBar("Profesor creado!", "Cerrar");
         })
 
 
-      this.notificationService.openSnackBar("Profesor creado!", "Cerrar");
+
 
     })
   }
@@ -104,9 +112,11 @@ export class TeachersComponent implements OnInit {
   }
 
   editTeacher(teacher: Teachers) {
+    const person = new Persons(teacher.person.id, teacher.person.name, teacher.person.lastName, teacher.person.email, teacher.person.password, teacher.person.birthDay, teacher.person.role, teacher.person.image, teacher.person.active);
+    const teacherClone = new Teachers(teacher.id, teacher.legajo, person, teacher.courses);
     const dialogRef = this.dialogoRef.open(TeachersModalComponent, {
       data: {
-        profesor: teacher,
+        profesor: teacherClone,
         opcion: 'editar'
       }
     });
@@ -140,11 +150,13 @@ export class TeachersComponent implements OnInit {
 
       this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
         .then((datos) => {
-          this.teachers$ = this.PersonsService.obtenerDatosProfesoresObservable();
+          //this.teachers$ = this.PersonsService.obtenerDatosProfesoresObservable();
+          this.cargarTeachers();
+          this.notificationService.openSnackBar("Profesor actualizado!", "Cerrar");
         })
 
 
-      this.notificationService.openSnackBar("Profesor actualizado!", "Cerrar");
+
 
     })
   }
@@ -170,18 +182,11 @@ export class TeachersComponent implements OnInit {
     this.PersonsService.crearActualizarPersonaObservable(data).toPromise()
       .then((datos) => {
 
-        this.teachers$ = this.PersonsService.obtenerDatosProfesoresObservable();
+        //this.teachers$ = this.PersonsService.obtenerDatosProfesoresObservable();
+        this.cargarTeachers();
+        this.notificationService.openSnackBar("Profesor actualizado!", "Cerrar");
       })
 
-    this.teachersSuscripcion = this.teachers$
-      .subscribe((datos) => {
-        this.teachers = datos;
-        this.dataSource.data = this.teachers;
-
-      });
-
-
-    this.notificationService.openSnackBar("Profesor actualizado!", "Cerrar");
 
   }
 

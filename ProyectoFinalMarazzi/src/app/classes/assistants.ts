@@ -10,3 +10,12 @@ export class Assistants {
 
     ) { }
 }
+
+
+export interface Assistants {
+    id: number;
+    legajo: string;
+    person: Persons;
+    courses: Courses[];
+
+}

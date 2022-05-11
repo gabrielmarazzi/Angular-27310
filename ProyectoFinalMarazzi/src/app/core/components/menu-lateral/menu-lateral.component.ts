@@ -11,6 +11,7 @@ import { Store } from '@ngrx/store';
 import { LoadCourses, LoadCoursesSuccess } from 'src/app/state/actions/course.action';
 import { AppState } from 'src/app/state/app.state';
 import { selectorCourses } from 'src/app/state/selectors/course.selector';
+import { SharedFunctions } from 'src/app/classes/sharedFunctions';
 
 
 @Component({
@@ -82,7 +83,13 @@ export class MenuLateralComponent implements OnInit {
     this.CursosSuscripcion = this.cursoService.obtenerDatosCursosObservable()
       .subscribe((datos) => {
         // console.log(datos)
-        this.store.dispatch(LoadCoursesSuccess({ courses: datos }));
+        if (SharedFunctions.getRole() == 4) {
+          let cursosFiltrados = datos.filter((x: { students: any[]; }) => x.students.find((y: { id: any; }) => y.id == SharedFunctions.getId()));
+          this.store.dispatch(LoadCoursesSuccess({ courses: cursosFiltrados }));
+        } else {
+          this.store.dispatch(LoadCoursesSuccess({ courses: datos }));
+        }
+
       });
     //this.store.select(selectorCourses)
   }

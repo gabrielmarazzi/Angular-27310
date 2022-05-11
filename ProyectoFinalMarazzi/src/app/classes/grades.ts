@@ -18,3 +18,13 @@ export class Grades {
 
 
 }
+
+
+export interface Grades {
+    id: number;
+    course: number;
+    grade: number;
+    date: Date;
+    descripcion: string;
+
+}

@@ -8,3 +8,11 @@ export class Clases {
 
 
 }
+
+
+export interface Clases {
+    id: number;
+    nombre: string;
+    descripcion: string;
+    fechaHora: Date;
+}

@@ -1,7 +1,13 @@
+import { selectStudentId } from './../../../../state/selectors/student.selector';
+import { LoadStudentIdSuccess } from './../../../../state/actions/student.action';
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
 import { PersonsService } from 'src/app/services/persons.service';
+import { LoadStudents, LoadStudentsSuccess } from 'src/app/state/actions/student.action';
+import { AppState } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-students-detail',
@@ -20,7 +26,8 @@ export class StudentsDetailComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private PersonsService: PersonsService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) { }
 
   ngOnInit(): void {
@@ -28,11 +35,7 @@ export class StudentsDetailComponent implements OnInit {
       (params) => {
         this.legajo = params['id'];
 
-        this.student$ = this.PersonsService.obtenerDatosPersonasObservableId(this.legajo, 4);
-        this.studentSuscripcion = this.student$
-          .subscribe((datos) => {
-            this.student = datos[0];
-          });
+        this.cargarEstudiante();
 
 
 
@@ -42,7 +45,22 @@ export class StudentsDetailComponent implements OnInit {
 
   }
 
+  cargarEstudiante() {
+    this.store.dispatch(LoadStudents());
+    this.PersonsService.obtenerDatosPersonasObservableId(this.legajo, 4)
+      .subscribe((datos) => {
+        this.student = datos[0];
+        this.store.dispatch(LoadStudentIdSuccess({ students: datos }));
+
+      });
+    this.student = this.store.select(selectStudentId)
+  }
+
   goBack() {
     this.router.navigate(['students']);
   }
 }
+function selectStudents(selectStudents: any): any {
+  throw new Error('Function not implemented.');
+}
+

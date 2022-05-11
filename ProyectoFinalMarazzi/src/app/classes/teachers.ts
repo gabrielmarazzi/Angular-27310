@@ -9,3 +9,11 @@ export class Teachers {
         public courses: Array<Courses>,
     ) { }
 }
+
+export interface Teachers {
+    id: number;
+    legajo: string;
+    person: Persons;
+    courses: Courses[];
+
+}
