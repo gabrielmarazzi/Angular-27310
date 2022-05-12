@@ -39,3 +39,7 @@ Estudiante
 		No puede administrar inscripciones
 	En la pantalla inicial solo se muestran los cursos a los que esta inscripto
 
+Para cada modificación, se muestra un snackbar que esta dentro del serivicio notificationService que se encuentra en la carpeta Services
+
+
+Muchas gracias por todos
