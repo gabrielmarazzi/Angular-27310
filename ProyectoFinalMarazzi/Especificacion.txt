@@ -39,7 +39,10 @@ Estudiante
 		No puede administrar inscripciones
 	En la pantalla inicial solo se muestran los cursos a los que esta inscripto
 
-Para cada modificación, se muestra un snackbar que esta dentro del serivicio notificationService que se encuentra en la carpeta Services
+Segui el consejo de Victoria, y para cada modificación, se muestra un snackbar que esta dentro del serivicio notificationService que se encuentra en la carpeta Services
+Adicionalmente agregue mas info y un boton al menu-superior
+
+NOTA:
 
 Tuve que cambiar el budget en angular.json para poder hacer el "ng build"
 Me daba el siguiente warning y error
