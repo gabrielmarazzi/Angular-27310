@@ -41,5 +41,24 @@ Estudiante
 
 Para cada modificación, se muestra un snackbar que esta dentro del serivicio notificationService que se encuentra en la carpeta Services
 
+Tuve que cambiar el budget en angular.json para poder hacer el "ng build"
+Me daba el siguiente warning y error
 
-Muchas gracias por todos
+Warning: bundle initial exceeded maximum budget. Budget 500.00 kB was not met by 670.40 kB with a total of 1.14 MB.
+Error: bundle initial exceeded maximum budget. Budget 1.00 MB was not met by 146.40 kB with a total of 1.14 MB.
+
+"budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+
+
+Muchas gracias por todo. Me gusto mucho el curso
