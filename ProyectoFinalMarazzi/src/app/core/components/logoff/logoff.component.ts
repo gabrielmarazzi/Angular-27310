@@ -28,7 +28,7 @@ export class LogoffComponent implements OnInit {
     if (user != "" && guid != "") {
       this.authService.logout(user, guid).subscribe((datos) => {
         if (datos.res == "OK") {
-          sessionStorage.clear();
+          //sessionStorage.clear();
           this.router.navigate(["/login"]);
           setTimeout(() => {
             this.SpinnerService.hide();

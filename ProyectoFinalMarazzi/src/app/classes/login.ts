@@ -1,6 +1,15 @@
-import { identifierName } from "@angular/compiler";
+/*
+
+    Esta clase y funciones son para probar acceder a los datos de login desde cualquier parte.
+    Reemplazando el session storage
+
+*/
+
 import { Store } from "@ngrx/store";
 import { AppState } from "../state/app.state";
+
+
+
 
 export class Login {
     constructor(
