@@ -12,6 +12,8 @@ import { LoadCourses, LoadCoursesSuccess } from 'src/app/state/actions/course.ac
 import { AppState } from 'src/app/state/app.state';
 import { selectorCourses } from 'src/app/state/selectors/course.selector';
 import { SharedFunctions } from 'src/app/classes/sharedFunctions';
+import { Login } from 'src/app/classes/login';
+import { NotificationService } from 'src/app/services/notification.service';
 
 
 @Component({
@@ -36,7 +38,8 @@ export class MenuLateralComponent implements OnInit {
     private SpinnerService: NgxSpinnerService,
     private route: Router,
     private store: Store<AppState>,
-    private cursoService: CourseService
+    private cursoService: CourseService,
+    private notificationService: NotificationService
   ) {
 
   }
@@ -45,32 +48,36 @@ export class MenuLateralComponent implements OnInit {
   ngOnInit(): void {
     //this.menuItems = MenuItems.getMenuByRole(this.student.person.role.id);
     this.SpinnerService.show();
-
     this.cargarCursos();
-    let id = parseInt(sessionStorage.getItem("id")!);
-    let roleId: number = parseInt(sessionStorage.getItem("role")!)
-    this.students$ = this.studentService.obtenerDatosPersonasObservableId(id, roleId)
-    // console.log(id);
-    this.studentsSuscripcion = this.students$
-      .subscribe((datos) => {
-        //console.log(datos);
-        if (datos.length > 0) {
-          this.student = datos[0];
+    let id = Login.getIdFromStore(this.store);
+    let roleId: number = Login.getIdFromStore(this.store)
+    if (id != 0 && roleId != 0) {
+      this.cargarCursos();
+      this.students$ = this.studentService.obtenerDatosPersonasObservableId(id, roleId)
+      // console.log(id);
+      this.studentsSuscripcion = this.students$
+        .subscribe((datos) => {
+          //console.log(datos);
+          if (datos.length > 0) {
+            this.student = datos[0];
 
-          this.person = this.student.person;
-          let roleId: number = parseInt(sessionStorage.getItem("role")!)
+            this.person = this.student.person;
+            //let roleId: number = parseInt(sessionStorage.getItem("role")!)
 
-          this.menuItems = MenuItems.getMenuByRole(roleId);
-          if (this.student != null) {
+            this.menuItems = MenuItems.getMenuByRole(roleId);
+            if (this.student != null) {
+              this.SpinnerService.hide();
+            }
+          } else {
+
+            this.route.navigate(["/login"]);
+
             this.SpinnerService.hide();
           }
-        } else {
-
-          this.route.navigate(["/login"]);
-
-          this.SpinnerService.hide();
-        }
-      });
+        });
+    } else {
+      this.notificationService.openSnackBar("Los datos ingresados son incorrectos", "");
+    }
   }
 
   ngOnDestroy(): void {
