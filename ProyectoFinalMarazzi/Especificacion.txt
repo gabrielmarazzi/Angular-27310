@@ -1,9 +1,5 @@
-Cree los siguientes tests (son 20 en total no los cree todos, porque me parecia mucho, y un tanto repetitivo)
-
-core -> services (auth)
-app -> services (person y course)
-featured -> ayudantes -> assistants y assistants-modal
-app-component
+Todo lo relacionado con NgRx (action, reducers y selectors) se encuentra dentro la carpeta state.
+Dentro de la carpeta classes, se encuentran las clases correspondientes y los states
 
 Usuarios:
 
@@ -18,7 +14,8 @@ Usuarios:
 Guard:
 
 	Se asegura que este logueado antes de moverse por la aplicacion
-	y segun el role, si puede o no acceder a la pantalla
+	y segun el role, si puede o no acceder a la pantalla.
+	Fue modificado para trabajar con el store de REDUX
 
 
 Segmente un poco mas los permisos, separando en 4 roles.
