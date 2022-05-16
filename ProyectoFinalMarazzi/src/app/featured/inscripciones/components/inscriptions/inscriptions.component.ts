@@ -13,9 +13,9 @@ import { LoadCourses, LoadCourseIdSuccess } from 'src/app/state/actions/course.a
 import { selectCourseId } from 'src/app/state/selectors/course.selector';
 
 @Component({
-  selector: 'app-Inscriptions',
-  templateUrl: './Inscriptions.component.html',
-  styleUrls: ['./Inscriptions.component.css']
+  selector: 'app-inscriptions',
+  templateUrl: './inscriptions.component.html',
+  styleUrls: ['./inscriptions.component.css']
 })
 export class InscriptionsComponent implements OnInit {
 
