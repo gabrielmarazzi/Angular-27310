@@ -9,6 +9,7 @@ import { SharedFunctions } from 'src/app/classes/sharedFunctions';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { NotificationService } from 'src/app/services/notification.service';
+import { Login } from 'src/app/classes/login';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +34,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.cargando = true;
     this.Cursos$ = this.store.select(selectorCourses);
     this.cargando = true;
+    let roleId: number = Login.getRoleFromStore(this.store)
+    if (roleId == 4) {
+      this.inscripto = true;
+    }
   }
 
 

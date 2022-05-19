@@ -16,6 +16,7 @@ import { selectorCourses } from 'src/app/state/selectors/course.selector';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/state/app.state';
 import { LoadCourses, LoadCoursesSuccess } from 'src/app/state/actions/course.action';
+import { Login } from 'src/app/classes/login';
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
@@ -56,7 +57,8 @@ export class CoursesComponent implements OnInit {
     })
     this.obtenerCursos();
 
-    if (SharedFunctions.getRole() == 1) {
+    let roleId: number = Login.getRoleFromStore(this.store)
+    if (roleId == 1) {
       this.ABMCurso = true;
     }
   }

@@ -11,6 +11,7 @@ import { NotificationService } from 'src/app/services/notification.service';
 import { Store } from '@ngrx/store';
 import { LoadCourses, LoadCourseIdSuccess } from 'src/app/state/actions/course.action';
 import { selectCourseId } from 'src/app/state/selectors/course.selector';
+import { Login } from 'src/app/classes/login';
 
 @Component({
   selector: 'app-inscriptions',
@@ -33,7 +34,7 @@ export class InscriptionsComponent implements OnInit {
   Curso$!: Observable<any>
   CursoSuscripcion!: any;
   dataSource = new MatTableDataSource();
-
+  administra = false;
   private routeSubcription!: Subscription;
   studentsNoInscriptions: any;
   constructor(
@@ -66,6 +67,13 @@ export class InscriptionsComponent implements OnInit {
         }
       });
     this.obtenerEstudiantes();
+
+    let roleId: number = Login.getRoleFromStore(this.store)
+    if (roleId == 4) {
+      this.administra = false;
+    } else {
+      this.administra = true;
+    }
   }
 
   obtenerCurso(id: number) {

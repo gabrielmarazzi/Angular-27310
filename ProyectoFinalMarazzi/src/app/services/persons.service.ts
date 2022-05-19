@@ -74,7 +74,7 @@ export class PersonsService {
     params = params.append('IdStudent', id.toString());
     params = params.append('Role', pIdRole.toString());
     let Respuesta = this.http.get(this.serviceURL, { params: params });
-
+    console.log(this.serviceURL + "?" + params.toString());
     return Respuesta.pipe(catchError(this.httpMensajeError));
   }
 

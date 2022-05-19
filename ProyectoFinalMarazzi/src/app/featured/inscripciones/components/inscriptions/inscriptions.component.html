@@ -50,7 +50,7 @@
     <ng-container matColumnDef="opciones">
         <th mat-header-cell *matHeaderCellDef> Opciones </th>
         <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'">
-            <button mat-button routerLink="/students/{{fila.id}}">
+            <button mat-button routerLink="/students/{{fila.id}}" *ngIf="administra">
                 <mat-icon>search</mat-icon>
             </button>
 
@@ -60,7 +60,7 @@
     <ng-container matColumnDef="insc">
         <th mat-header-cell *matHeaderCellDef> Desinscribir </th>
         <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'">
-            <button mat-icon-button color="primary" (click)="ABMCurso(fila,'B')">
+            <button mat-icon-button color="primary" (click)="ABMCurso(fila,'B')" *ngIf="administra">
                 <mat-icon>assignment_returned</mat-icon>
             </button>
 
@@ -119,7 +119,7 @@
     <ng-container matColumnDef="opciones">
         <th mat-header-cell *matHeaderCellDef> Opciones </th>
         <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'">
-            <button mat-button routerLink="/students/{{fila.id}}">
+            <button mat-button routerLink="/students/{{fila.id}}" *ngIf="administra">
                 <mat-icon>search</mat-icon>
             </button>
         </td>
@@ -127,7 +127,7 @@
     <ng-container matColumnDef="insc">
         <th mat-header-cell *matHeaderCellDef> Inscribir </th>
         <td mat-cell *matCellDef="let fila" [ngClass]="fila.person.active ? 'enable' : 'disabled'">
-            <button mat-icon-button color="primary" (click)="ABMCurso(fila,'A')">
+            <button mat-icon-button color="primary" (click)="ABMCurso(fila,'A')" *ngIf="administra">
                 <mat-icon>assignment_turned_in</mat-icon>
             </button>
 

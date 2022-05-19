@@ -50,7 +50,7 @@ export class MenuLateralComponent implements OnInit {
     this.SpinnerService.show();
     this.cargarCursos();
     let id = Login.getIdFromStore(this.store);
-    let roleId: number = Login.getIdFromStore(this.store)
+    let roleId: number = Login.getRoleFromStore(this.store)
     if (id != 0 && roleId != 0) {
       this.cargarCursos();
       this.students$ = this.studentService.obtenerDatosPersonasObservableId(id, roleId)
@@ -86,12 +86,14 @@ export class MenuLateralComponent implements OnInit {
 
 
   cargarCursos() {
+    let id = Login.getIdFromStore(this.store);
+    let roleId: number = Login.getRoleFromStore(this.store)
     this.store.dispatch(LoadCourses());
     this.CursosSuscripcion = this.cursoService.obtenerDatosCursosObservable()
       .subscribe((datos) => {
-        // console.log(datos)
-        if (SharedFunctions.getRole() == 4) {
-          let cursosFiltrados = datos.filter((x: { students: any[]; }) => x.students.find((y: { id: any; }) => y.id == SharedFunctions.getId()));
+        // console.log(roleId)
+        if (roleId == 4) {
+          let cursosFiltrados = datos.filter((x: { students: any[]; }) => x.students.find((y: { id: any; }) => y.id == id));
           this.store.dispatch(LoadCoursesSuccess({ courses: cursosFiltrados }));
         } else {
           this.store.dispatch(LoadCoursesSuccess({ courses: datos }));
